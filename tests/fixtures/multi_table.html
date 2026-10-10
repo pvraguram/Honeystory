@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head><title>Multi-Table Aircraft Log</title></head>
+<body>
+
+<!-- Table 1: Engine data with ISO timestamps (should be extracted) -->
+<table id="engine_log">
+  <caption>Engine Performance Log</caption>
+  <thead>
+    <tr>
+      <th>event_time</th>
+      <th>engine_id</th>
+      <th>n1_pct</th>
+      <th>egt_celsius</th>
+      <th>fuel_flow_kg_hr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2024-01-15T09:00:00.000</td>
+      <td>ENG_1</td>
+      <td>85.2</td>
+      <td>620</td>
+      <td>1800</td>
+    </tr>
+    <tr>
+      <td>2024-01-15T09:00:01.250</td>
+      <td>ENG_2</td>
+      <td>85.4</td>
+      <td>618</td>
+      <td>1795</td>
+    </tr>
+    <tr>
+      <td>2024-01-15T09:00:02.500</td>
+      <td>ENG_1</td>
+      <td>85.1</td>
+      <td>621</td>
+      <td>1802</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Table 2: Reference/config table without timestamps (should NOT be extracted) -->
+<table id="config_params">
+  <thead>
+    <tr>
+      <th>parameter</th>
+      <th>limit_low</th>
+      <th>limit_high</th>
+      <th>unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>N1</td><td>0</td><td>100</td><td>%</td></tr>
+    <tr><td>EGT</td><td>0</td><td>900</td><td>°C</td></tr>
+    <tr><td>FF</td><td>0</td><td>3000</td><td>kg/hr</td></tr>
+  </tbody>
+</table>
+
+<!-- Table 3: Fuel log with DD/MM/YYYY format timestamps -->
+<table id="fuel_log">
+  <thead>
+    <tr>
+      <th>logged_at</th>
+      <th>tank</th>
+      <th>quantity_kg</th>
+      <th>temperature_c</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>15/01/2024 09:00:00.000</td>
+      <td>LEFT</td>
+      <td>8500</td>
+      <td>18.2</td>
+    </tr>
+    <tr>
+      <td>15/01/2024 09:00:05.000</td>
+      <td>RIGHT</td>
+      <td>8480</td>
+      <td>18.1</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

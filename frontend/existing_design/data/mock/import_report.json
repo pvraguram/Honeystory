@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-10-10T02:37:09.445368Z",
+  "source": "FlightStory DuckDB Analytical Warehouse (Real Aircraft Logs)",
+  "totals": {
+    "rowsIn": 5257,
+    "events": 5257,
+    "skipped": 0
+  },
+  "byFamily": {
+    "LBPQ": {
+      "rowsIn": 1362,
+      "parsed": 1362,
+      "skipped": 0
+    },
+    "CI_BPQ": {
+      "rowsIn": 1919,
+      "parsed": 1919,
+      "skipped": 0
+    },
+    "Fault": {
+      "rowsIn": 1577,
+      "parsed": 1577,
+      "skipped": 0
+    },
+    "State_Transition": {
+      "rowsIn": 348,
+      "parsed": 348,
+      "skipped": 0
+    },
+    "STATE": {
+      "rowsIn": 51,
+      "parsed": 51,
+      "skipped": 0
+    }
+  },
+  "skipped": []
+}

@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Data outputs (generated — not source)
+data/database/*.duckdb
+data/nodes/
+data/raw_archive/
+data/manifests/
+
+# But keep the input directory and its README
+!data/input_html/
+!data/input_html/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Frontend dependencies and build output
+frontend/**/node_modules/
+frontend/**/.next/
+frontend/**/out/
+frontend/**/*.tsbuildinfo
+frontend/**/*.log
+
+# OS
+.DS_Store
+Thumbs.db

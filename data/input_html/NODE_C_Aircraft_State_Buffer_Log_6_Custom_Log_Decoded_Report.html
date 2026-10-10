@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Public-Safe Right FMS Diagnostic Log</title>
+<style>
+        :root {
+            --background-light: #f4f4f4;
+            --background-dark: #333;
+            --text-light: #000;
+            --text-dark: #fff;
+            --table-background-light: #fff;
+            --table-background-dark: #444;
+            --table-header-light: #f2f2f2;
+            --table-header-dark: #666;
+            --table-border-light: #ddd;
+            --table-border-dark: #666;
+            --hover-light: #e5e5e5;
+            --hover-dark: #777;
+            --alternate-row-light: #f2f2f2;
+            --alternate-row-dark: #555;
+            --muted-text-light: #888;
+            --muted-text-dark: #bbb;
+            --error-color-light: #b00020;
+            --error-color-dark: #ff6b6b;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            margin: 0;
+            padding: 10px 14px;
+            font-size: 12px;
+            line-height: 1.25;
+        }
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--table-background-light);
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            table-layout: auto;
+        }
+        .log-table th, .log-table td {
+            padding: 4px 6px;
+            text-align: left;
+            border: 1px solid var(--table-border-light);
+            font-size: 11.5px;
+        }
+        .log-table th.center, .log-table td.center {
+            text-align: center;
+        }
+        .log-table th.date-time, .log-table td.date-time {
+            white-space: nowrap;
+        }
+        .log-table td.date-time {
+            font-variant-numeric: tabular-nums;
+        }
+        .log-table th {
+            background-color: var(--table-header-light);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 1.2;
+            vertical-align: middle;
+        }
+        .log-table td {
+            vertical-align: top;
+        }
+        .log-table tr:nth-child(even) {
+            background-color: var(--alternate-row-light);
+        }
+        .log-table tr:hover {
+            background-color: var(--hover-light);
+        }
+        .na-data {
+            color: var(--muted-text-light);
+            font-style: italic;
+        }
+        .red-na-data {
+            color: var(--error-color-light);
+            font-style: italic;
+        }
+        .invalid-data {
+            color: var(--error-color-light);
+            font-weight: 600;
+        }
+        .page-heading {
+            text-align: center;
+            margin: 8px 0 12px 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .page-subheading {
+            display: block;
+            font-size: 14px;
+            margin-top: 4px;
+            color: var(--muted-text-light);
+            font-weight: 400;
+        }
+        .data-words {
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        .msg {
+            column-gap: 18px;
+            column-fill: balance;
+        }
+        @media (min-width: 1400px) {
+            .msg {
+                column-width: 260px;
+            }
+        }
+        .msg ul {
+            margin: 0;
+            padding-left: 16px;
+        }
+        .msg li {
+            break-inside: avoid;
+            -webkit-column-break-inside: avoid;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: var(--background-dark);
+                color: var(--text-dark);
+            }
+            .log-table {
+                background-color: var(--table-background-dark);
+            }
+            .log-table th, .log-table td {
+                border: 1px solid var(--table-border-dark);
+            }
+            .log-table th {
+                background-color: var(--table-header-dark);
+            }
+            .log-table tr:nth-child(even) {
+                background-color: var(--alternate-row-dark);
+            }
+            .log-table tr:hover {
+                background-color: var(--hover-dark);
+            }
+            .na-data {
+                color: var(--muted-text-dark);
+            }
+            .red-na-data {
+                color: var(--error-color-dark);
+            }
+            .invalid-data {
+                color: var(--error-color-dark);
+            }
+            .page-subheading {
+                color: var(--muted-text-dark);
+            }
+        }
+    </style>
+</head>
+<body>
+<h1 class="page-heading">Public-Safe Right FMS Diagnostic Log</h1>
+<table class="log-table">
+<tr>
+<th class="center">Sequence number</th>
+<th class="date-time">Date and time</th>
+<th class="center">Message</th>
+</tr>
+<tr>
+<td class="center">1</td>
+<td class="date-time">2032-06-18 09:42:53 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Fault identifier code:</strong> 0</li>
+<li><strong>Fault identifier subcode:</strong> 0</li>
+<li><strong>Active flight leg record:</strong> 0</li>
+<li><strong>Sequence:</strong> 0</li>
+<li><strong>Date:</strong> 0</li>
+<li><strong>Time:</strong> 0</li>
+<li><strong>Master status current1:</strong> 0</li>
+<li><strong>Dual mode current1:</strong> 0</li>
+<li><strong>Opposite fms ok current1:</strong> 0</li>
+<li><strong>Other dual fms node position current1:</strong> 0</li>
+<li><strong>Standby fms node position current1:</strong> 0</li>
+<li><strong>Functional position current1:</strong> 0</li>
+<li><strong>Flight leg num current1:</strong> 0</li>
+<li><strong>Master status current2:</strong> 0</li>
+<li><strong>Dual mode current2:</strong> 0</li>
+<li><strong>Opposite fms ok current2:</strong> 0</li>
+<li><strong>Other dual fms node position current2:</strong> 0</li>
+<li><strong>Standby fms node position current2:</strong> 0</li>
+<li><strong>Functional position current2:</strong> 0</li>
+<li><strong>Flight leg num current2:</strong> 0</li>
+<li><strong>Master status previous1:</strong> 0</li>
+<li><strong>Dual mode previous1:</strong> 0</li>
+<li><strong>Opposite fms ok previous1:</strong> 0</li>
+<li><strong>Other dual fms node position previous1:</strong> 0</li>
+<li><strong>Standby fms node position previous1:</strong> 0</li>
+<li><strong>Functional position previous1:</strong> 0</li>
+<li><strong>Flight leg num previous1:</strong> 0</li>
+<li><strong>Master status previous2:</strong> 0</li>
+<li><strong>Dual mode previous2:</strong> 0</li>
+<li><strong>Opposite fms ok previous2:</strong> 0</li>
+<li><strong>Other dual fms node position previous2:</strong> 0</li>
+<li><strong>Standby fms node position previous2:</strong> 0</li>
+<li><strong>Functional position previous2:</strong> 0</li>
+<li><strong>Flight leg num previous2:</strong> 0</li>
+<li><strong>Fault response:</strong> 0</li>
+<li><strong>Capt flight director:</strong> 0</li>
+<li><strong>Fo flight director:</strong> 0</li>
+<li><strong>Flight plan:</strong> 0</li>
+<li><strong>Vnav level off:</strong> 0</li>
+<li><strong>Lnav guidance mode:</strong> 2</li>
+<li><strong>Vnav guidance mode:</strong> 0</li>
+<li><strong>Lnav status:</strong> 0</li>
+<li><strong>Vnav status:</strong> 0</li>
+<li><strong>Act navigation vs act Performance ptr:</strong> 0</li>
+<li><strong>Button push in progress:</strong> 1</li>
+<li><strong>Ndb selected cycle:</strong> 1</li>
+<li><strong>Ils mode:</strong> 1</li>
+<li><strong>Previous leg terminator:</strong> 23</li>
+<li><strong>Active leg terminator:</strong> 0</li>
+<li><strong>Right cdu title page:</strong> 0</li>
+<li><strong>Left cdu title page:</strong> 0</li>
+<li><strong>Active waypoint:</strong> ??????B?</li>
+<li><strong>Current lateral leg Sequence:</strong> 1409320514</li>
+<li><strong>Next lateral leg Sequence:</strong> -1935671229</li>
+<li><strong>Dist to active waypoint:</strong> 0.000000</li>
+<li><strong>Gross weight:</strong> 160044.000000</li>
+<li><strong>Fuel weight:</strong> 0.000000</li>
+<li><strong>Cost index:</strong> 201326657</li>
+<li><strong>Track:</strong> 0.000000</li>
+<li><strong>Altitude:</strong> 0.000000</li>
+<li><strong>Altitude setting:</strong> 0.000000</li>
+<li><strong>Cruise altitude:</strong> 0.000000</li>
+<li><strong>Aircraft position lateral:</strong> 0.000000</li>
+<li><strong>Aircraft position long:</strong> 0.000000</li>
+<li><strong>Airspeed:</strong> 0.000000</li>
+<li><strong>Button push index:</strong> 0</li>
+<li><strong>Cdu scratchpad:</strong> 0</li>
+<li><strong>FMS button push1:</strong> 0</li>
+<li><strong>FMS button push2:</strong> 0</li>
+<li><strong>FMS button push3:</strong> 0</li>
+<li><strong>FMS button push4:</strong> 0</li>
+<li><strong>FMS button push5:</strong> 0</li>
+<li><strong>FMS button push6:</strong> 0</li>
+<li><strong>FMS button push7:</strong> 0</li>
+<li><strong>FMS button push8:</strong> 0</li>
+<li><strong>FMS button push9:</strong> 0</li>
+<li><strong>FMS button push10:</strong> 0</li>
+<li><strong>FMS button push11:</strong> 0</li>
+<li><strong>FMS button push12:</strong> 0</li>
+<li><strong>FMS button push13:</strong> 0</li>
+<li><strong>FMS button push14:</strong> 0</li>
+<li><strong>FMS button push15:</strong> 0</li>
+<li><strong>FMS button push16:</strong> 0</li>
+<li><strong>FMS button push17:</strong> 0</li>
+<li><strong>FMS button push18:</strong> 0</li>
+<li><strong>FMS button push19:</strong> 0</li>
+<li><strong>FMS button push20:</strong> 0</li>
+<li><strong>FMS button push21:</strong> 0</li>
+<li><strong>FMS button push22:</strong> 0</li>
+<li><strong>FMS button push23:</strong> 0</li>
+<li><strong>FMS button push24:</strong> 0</li>
+<li><strong>FMS button push25:</strong> 0</li>
+<li><strong>FMS button push26:</strong> 0</li>
+<li><strong>FMS button push27:</strong> 0</li>
+<li><strong>FMS button push28:</strong> 0</li>
+<li><strong>FMS button push29:</strong> 0</li>
+<li><strong>FMS button push30:</strong> 0</li>
+<li><strong>FMS button push31:</strong> 0</li>
+<li><strong>FMS button push32:</strong> 0</li>
+<li><strong>FMS button push33:</strong> 0</li>
+<li><strong>FMS button push34:</strong> 0</li>
+<li><strong>FMS button push35:</strong> 0</li>
+<li><strong>FMS button push36:</strong> 0</li>
+<li><strong>FMS button push37:</strong> 0</li>
+<li><strong>FMS button push38:</strong> 0</li>
+<li><strong>FMS button push39:</strong> 2816</li>
+<li><strong>FMS button push40:</strong> 0</li>
+<li><strong>FMS button push41:</strong> 0</li>
+<li><strong>FMS button push42:</strong> 0</li>
+<li><strong>Simsoft data:</strong> 0</li>
+<li><strong>Software fault address:</strong> 6</li>
+<li><strong>Last in:</strong> 2</li>
+<li><strong>First in:</strong> 16</li>
+<li><strong>Left bite trc history:</strong> 6</li>
+<li><strong>Left bite trc history:</strong> 0</li>
+<li><strong>Right bite trc history:</strong> 6</li>
+<li><strong>Right bite trc history:</strong> 0</li>
+<li><strong>Ioci button push:</strong> 1</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">2</td>
+<td class="date-time">2032-06-18 10:27:14 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Fault identifier code:</strong> 0</li>
+<li><strong>Fault identifier subcode:</strong> 0</li>
+<li><strong>Active flight leg record:</strong> 0</li>
+<li><strong>Sequence:</strong> 0</li>
+<li><strong>Date:</strong> 0</li>
+<li><strong>Time:</strong> 0</li>
+<li><strong>Master status current1:</strong> 0</li>
+<li><strong>Dual mode current1:</strong> 0</li>
+<li><strong>Opposite fms ok current1:</strong> 0</li>
+<li><strong>Other dual fms node position current1:</strong> 0</li>
+<li><strong>Standby fms node position current1:</strong> 0</li>
+<li><strong>Functional position current1:</strong> 0</li>
+<li><strong>Flight leg num current1:</strong> 0</li>
+<li><strong>Master status current2:</strong> 0</li>
+<li><strong>Dual mode current2:</strong> 0</li>
+<li><strong>Opposite fms ok current2:</strong> 0</li>
+<li><strong>Other dual fms node position current2:</strong> 0</li>
+<li><strong>Standby fms node position current2:</strong> 0</li>
+<li><strong>Functional position current2:</strong> 0</li>
+<li><strong>Flight leg num current2:</strong> 0</li>
+<li><strong>Master status previous1:</strong> 0</li>
+<li><strong>Dual mode previous1:</strong> 0</li>
+<li><strong>Opposite fms ok previous1:</strong> 0</li>
+<li><strong>Other dual fms node position previous1:</strong> 0</li>
+<li><strong>Standby fms node position previous1:</strong> 0</li>
+<li><strong>Functional position previous1:</strong> 0</li>
+<li><strong>Flight leg num previous1:</strong> 0</li>
+<li><strong>Master status previous2:</strong> 0</li>
+<li><strong>Dual mode previous2:</strong> 0</li>
+<li><strong>Opposite fms ok previous2:</strong> 0</li>
+<li><strong>Other dual fms node position previous2:</strong> 0</li>
+<li><strong>Standby fms node position previous2:</strong> 0</li>
+<li><strong>Functional position previous2:</strong> 0</li>
+<li><strong>Flight leg num previous2:</strong> 0</li>
+<li><strong>Fault response:</strong> 0</li>
+<li><strong>Capt flight director:</strong> 0</li>
+<li><strong>Fo flight director:</strong> 0</li>
+<li><strong>Flight plan:</strong> 0</li>
+<li><strong>Vnav level off:</strong> 0</li>
+<li><strong>Lnav guidance mode:</strong> 2</li>
+<li><strong>Vnav guidance mode:</strong> 0</li>
+<li><strong>Lnav status:</strong> 0</li>
+<li><strong>Vnav status:</strong> 0</li>
+<li><strong>Act navigation vs act Performance ptr:</strong> 0</li>
+<li><strong>Button push in progress:</strong> 1</li>
+<li><strong>Ndb selected cycle:</strong> 1</li>
+<li><strong>Ils mode:</strong> 1</li>
+<li><strong>Previous leg terminator:</strong> 23</li>
+<li><strong>Active leg terminator:</strong> 0</li>
+<li><strong>Right cdu title page:</strong> 0</li>
+<li><strong>Left cdu title page:</strong> 0</li>
+<li><strong>Active waypoint:</strong> ??????Bm</li>
+<li><strong>Current lateral leg Sequence:</strong> 1409305922</li>
+<li><strong>Next lateral leg Sequence:</strong> -1935671229</li>
+<li><strong>Dist to active waypoint:</strong> 0.000000</li>
+<li><strong>Gross weight:</strong> 160044.000000</li>
+<li><strong>Fuel weight:</strong> 0.000000</li>
+<li><strong>Cost index:</strong> 201326657</li>
+<li><strong>Track:</strong> 0.000000</li>
+<li><strong>Altitude:</strong> 0.000000</li>
+<li><strong>Altitude setting:</strong> 0.000000</li>
+<li><strong>Cruise altitude:</strong> 0.000000</li>
+<li><strong>Aircraft position lateral:</strong> 0.000000</li>
+<li><strong>Aircraft position long:</strong> 0.000000</li>
+<li><strong>Airspeed:</strong> 0.000000</li>
+<li><strong>Button push index:</strong> 0</li>
+<li><strong>Cdu scratchpad:</strong> 0</li>
+<li><strong>FMS button push1:</strong> 0</li>
+<li><strong>FMS button push2:</strong> 0</li>
+<li><strong>FMS button push3:</strong> 0</li>
+<li><strong>FMS button push4:</strong> 0</li>
+<li><strong>FMS button push5:</strong> 0</li>
+<li><strong>FMS button push6:</strong> 0</li>
+<li><strong>FMS button push7:</strong> 0</li>
+<li><strong>FMS button push8:</strong> 0</li>
+<li><strong>FMS button push9:</strong> 0</li>
+<li><strong>FMS button push10:</strong> 0</li>
+<li><strong>FMS button push11:</strong> 0</li>
+<li><strong>FMS button push12:</strong> 0</li>
+<li><strong>FMS button push13:</strong> 0</li>
+<li><strong>FMS button push14:</strong> 0</li>
+<li><strong>FMS button push15:</strong> 0</li>
+<li><strong>FMS button push16:</strong> 0</li>
+<li><strong>FMS button push17:</strong> 0</li>
+<li><strong>FMS button push18:</strong> 0</li>
+<li><strong>FMS button push19:</strong> 0</li>
+<li><strong>FMS button push20:</strong> 0</li>
+<li><strong>FMS button push21:</strong> 0</li>
+<li><strong>FMS button push22:</strong> 0</li>
+<li><strong>FMS button push23:</strong> 0</li>
+<li><strong>FMS button push24:</strong> 0</li>
+<li><strong>FMS button push25:</strong> 0</li>
+<li><strong>FMS button push26:</strong> 0</li>
+<li><strong>FMS button push27:</strong> 0</li>
+<li><strong>FMS button push28:</strong> 0</li>
+<li><strong>FMS button push29:</strong> 0</li>
+<li><strong>FMS button push30:</strong> 0</li>
+<li><strong>FMS button push31:</strong> 0</li>
+<li><strong>FMS button push32:</strong> 0</li>
+<li><strong>FMS button push33:</strong> 0</li>
+<li><strong>FMS button push34:</strong> 0</li>
+<li><strong>FMS button push35:</strong> 0</li>
+<li><strong>FMS button push36:</strong> 0</li>
+<li><strong>FMS button push37:</strong> 0</li>
+<li><strong>FMS button push38:</strong> 0</li>
+<li><strong>FMS button push39:</strong> 2816</li>
+<li><strong>FMS button push40:</strong> 0</li>
+<li><strong>FMS button push41:</strong> 0</li>
+<li><strong>FMS button push42:</strong> 0</li>
+<li><strong>Simsoft data:</strong> 0</li>
+<li><strong>Software fault address:</strong> 6</li>
+<li><strong>Last in:</strong> 2</li>
+<li><strong>First in:</strong> 16</li>
+<li><strong>Left bite trc history:</strong> 6</li>
+<li><strong>Left bite trc history:</strong> 0</li>
+<li><strong>Right bite trc history:</strong> 6</li>
+<li><strong>Right bite trc history:</strong> 0</li>
+<li><strong>Ioci button push:</strong> 1</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">3</td>
+<td class="date-time">2032-06-18 11:50:54 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Fault identifier code:</strong> 0</li>
+<li><strong>Fault identifier subcode:</strong> 0</li>
+<li><strong>Active flight leg record:</strong> 0</li>
+<li><strong>Sequence:</strong> 0</li>
+<li><strong>Date:</strong> 0</li>
+<li><strong>Time:</strong> 0</li>
+<li><strong>Master status current1:</strong> 0</li>
+<li><strong>Dual mode current1:</strong> 0</li>
+<li><strong>Opposite fms ok current1:</strong> 0</li>
+<li><strong>Other dual fms node position current1:</strong> 0</li>
+<li><strong>Standby fms node position current1:</strong> 0</li>
+<li><strong>Functional position current1:</strong> 0</li>
+<li><strong>Flight leg num current1:</strong> 0</li>
+<li><strong>Master status current2:</strong> 0</li>
+<li><strong>Dual mode current2:</strong> 0</li>
+<li><strong>Opposite fms ok current2:</strong> 0</li>
+<li><strong>Other dual fms node position current2:</strong> 0</li>
+<li><strong>Standby fms node position current2:</strong> 0</li>
+<li><strong>Functional position current2:</strong> 0</li>
+<li><strong>Flight leg num current2:</strong> 0</li>
+<li><strong>Master status previous1:</strong> 0</li>
+<li><strong>Dual mode previous1:</strong> 0</li>
+<li><strong>Opposite fms ok previous1:</strong> 0</li>
+<li><strong>Other dual fms node position previous1:</strong> 0</li>
+<li><strong>Standby fms node position previous1:</strong> 0</li>
+<li><strong>Functional position previous1:</strong> 0</li>
+<li><strong>Flight leg num previous1:</strong> 0</li>
+<li><strong>Master status previous2:</strong> 0</li>
+<li><strong>Dual mode previous2:</strong> 0</li>
+<li><strong>Opposite fms ok previous2:</strong> 0</li>
+<li><strong>Other dual fms node position previous2:</strong> 0</li>
+<li><strong>Standby fms node position previous2:</strong> 0</li>
+<li><strong>Functional position previous2:</strong> 0</li>
+<li><strong>Flight leg num previous2:</strong> 0</li>
+<li><strong>Fault response:</strong> 0</li>
+<li><strong>Capt flight director:</strong> 0</li>
+<li><strong>Fo flight director:</strong> 0</li>
+<li><strong>Flight plan:</strong> 0</li>
+<li><strong>Vnav level off:</strong> 0</li>
+<li><strong>Lnav guidance mode:</strong> 0</li>
+<li><strong>Vnav guidance mode:</strong> 0</li>
+<li><strong>Lnav status:</strong> 0</li>
+<li><strong>Vnav status:</strong> 0</li>
+<li><strong>Act navigation vs act Performance ptr:</strong> 0</li>
+<li><strong>Button push in progress:</strong> 1</li>
+<li><strong>Ndb selected cycle:</strong> 1</li>
+<li><strong>Ils mode:</strong> 17</li>
+<li><strong>Previous leg terminator:</strong> 4</li>
+<li><strong>Active leg terminator:</strong> 2</li>
+<li><strong>Right cdu title page:</strong> 0</li>
+<li><strong>Left cdu title page:</strong> 0</li>
+<li><strong>Active waypoint:</strong> -</li>
+<li><strong>Current lateral leg Sequence:</strong> -1417714878</li>
+<li><strong>Next lateral leg Sequence:</strong> -1935671229</li>
+<li><strong>Dist to active waypoint:</strong> 0.000000</li>
+<li><strong>Gross weight:</strong> 160045.109375</li>
+<li><strong>Fuel weight:</strong> 0.000000</li>
+<li><strong>Cost index:</strong> 201326657</li>
+<li><strong>Track:</strong> 12946.814453</li>
+<li><strong>Altitude:</strong> 0.000000</li>
+<li><strong>Altitude setting:</strong> 0.000000</li>
+<li><strong>Cruise altitude:</strong> 0.000000</li>
+<li><strong>Aircraft position lateral:</strong> 0.000000</li>
+<li><strong>Aircraft position long:</strong> 0.000000</li>
+<li><strong>Airspeed:</strong> 0.000000</li>
+<li><strong>Button push index:</strong> 0</li>
+<li><strong>Cdu scratchpad:</strong> 0</li>
+<li><strong>FMS button push1:</strong> 0</li>
+<li><strong>FMS button push2:</strong> 0</li>
+<li><strong>FMS button push3:</strong> 0</li>
+<li><strong>FMS button push4:</strong> 0</li>
+<li><strong>FMS button push5:</strong> 0</li>
+<li><strong>FMS button push6:</strong> 0</li>
+<li><strong>FMS button push7:</strong> 0</li>
+<li><strong>FMS button push8:</strong> 0</li>
+<li><strong>FMS button push9:</strong> 0</li>
+<li><strong>FMS button push10:</strong> 0</li>
+<li><strong>FMS button push11:</strong> 0</li>
+<li><strong>FMS button push12:</strong> 0</li>
+<li><strong>FMS button push13:</strong> 0</li>
+<li><strong>FMS button push14:</strong> 0</li>
+<li><strong>FMS button push15:</strong> 0</li>
+<li><strong>FMS button push16:</strong> 0</li>
+<li><strong>FMS button push17:</strong> 0</li>
+<li><strong>FMS button push18:</strong> 0</li>
+<li><strong>FMS button push19:</strong> 0</li>
+<li><strong>FMS button push20:</strong> 0</li>
+<li><strong>FMS button push21:</strong> 0</li>
+<li><strong>FMS button push22:</strong> 0</li>
+<li><strong>FMS button push23:</strong> 0</li>
+<li><strong>FMS button push24:</strong> 0</li>
+<li><strong>FMS button push25:</strong> 0</li>
+<li><strong>FMS button push26:</strong> 0</li>
+<li><strong>FMS button push27:</strong> 0</li>
+<li><strong>FMS button push28:</strong> 0</li>
+<li><strong>FMS button push29:</strong> 0</li>
+<li><strong>FMS button push30:</strong> 0</li>
+<li><strong>FMS button push31:</strong> 0</li>
+<li><strong>FMS button push32:</strong> 0</li>
+<li><strong>FMS button push33:</strong> 0</li>
+<li><strong>FMS button push34:</strong> 0</li>
+<li><strong>FMS button push35:</strong> 0</li>
+<li><strong>FMS button push36:</strong> 0</li>
+<li><strong>FMS button push37:</strong> 0</li>
+<li><strong>FMS button push38:</strong> 0</li>
+<li><strong>FMS button push39:</strong> 5376</li>
+<li><strong>FMS button push40:</strong> 0</li>
+<li><strong>FMS button push41:</strong> 0</li>
+<li><strong>FMS button push42:</strong> 0</li>
+<li><strong>Simsoft data:</strong> 1610612736</li>
+<li><strong>Software fault address:</strong> 537264290</li>
+<li><strong>Last in:</strong> 2</li>
+<li><strong>First in:</strong> 16</li>
+<li><strong>Left bite trc history:</strong> 6</li>
+<li><strong>Left bite trc history:</strong> 0</li>
+<li><strong>Right bite trc history:</strong> 0</li>
+<li><strong>Right bite trc history:</strong> 6</li>
+<li><strong>Ioci button push:</strong> 570425344</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">4</td>
+<td class="date-time">2032-06-18 12:01:02 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Fault identifier code:</strong> 0</li>
+<li><strong>Fault identifier subcode:</strong> 0</li>
+<li><strong>Active flight leg record:</strong> 0</li>
+<li><strong>Sequence:</strong> 0</li>
+<li><strong>Date:</strong> 0</li>
+<li><strong>Time:</strong> 0</li>
+<li><strong>Master status current1:</strong> 0</li>
+<li><strong>Dual mode current1:</strong> 0</li>
+<li><strong>Opposite fms ok current1:</strong> 0</li>
+<li><strong>Other dual fms node position current1:</strong> 0</li>
+<li><strong>Standby fms node position current1:</strong> 0</li>
+<li><strong>Functional position current1:</strong> 0</li>
+<li><strong>Flight leg num current1:</strong> 0</li>
+<li><strong>Master status current2:</strong> 0</li>
+<li><strong>Dual mode current2:</strong> 0</li>
+<li><strong>Opposite fms ok current2:</strong> 0</li>
+<li><strong>Other dual fms node position current2:</strong> 0</li>
+<li><strong>Standby fms node position current2:</strong> 0</li>
+<li><strong>Functional position current2:</strong> 0</li>
+<li><strong>Flight leg num current2:</strong> 0</li>
+<li><strong>Master status previous1:</strong> 0</li>
+<li><strong>Dual mode previous1:</strong> 0</li>
+<li><strong>Opposite fms ok previous1:</strong> 0</li>
+<li><strong>Other dual fms node position previous1:</strong> 0</li>
+<li><strong>Standby fms node position previous1:</strong> 0</li>
+<li><strong>Functional position previous1:</strong> 0</li>
+<li><strong>Flight leg num previous1:</strong> 0</li>
+<li><strong>Master status previous2:</strong> 0</li>
+<li><strong>Dual mode previous2:</strong> 0</li>
+<li><strong>Opposite fms ok previous2:</strong> 0</li>
+<li><strong>Other dual fms node position previous2:</strong> 0</li>
+<li><strong>Standby fms node position previous2:</strong> 0</li>
+<li><strong>Functional position previous2:</strong> 0</li>
+<li><strong>Flight leg num previous2:</strong> 0</li>
+<li><strong>Fault response:</strong> 0</li>
+<li><strong>Capt flight director:</strong> 0</li>
+<li><strong>Fo flight director:</strong> 0</li>
+<li><strong>Flight plan:</strong> 0</li>
+<li><strong>Vnav level off:</strong> 0</li>
+<li><strong>Lnav guidance mode:</strong> 0</li>
+<li><strong>Vnav guidance mode:</strong> 0</li>
+<li><strong>Lnav status:</strong> 0</li>
+<li><strong>Vnav status:</strong> 0</li>
+<li><strong>Act navigation vs act Performance ptr:</strong> 0</li>
+<li><strong>Button push in progress:</strong> 0</li>
+<li><strong>Ndb selected cycle:</strong> 1</li>
+<li><strong>Ils mode:</strong> 17</li>
+<li><strong>Previous leg terminator:</strong> 4</li>
+<li><strong>Active leg terminator:</strong> 2</li>
+<li><strong>Right cdu title page:</strong> 0</li>
+<li><strong>Left cdu title page:</strong> 0</li>
+<li><strong>Active waypoint:</strong> -</li>
+<li><strong>Current lateral leg Sequence:</strong> -1417659838</li>
+<li><strong>Next lateral leg Sequence:</strong> -1935671229</li>
+<li><strong>Dist to active waypoint:</strong> 0.000000</li>
+<li><strong>Gross weight:</strong> 160045.109375</li>
+<li><strong>Fuel weight:</strong> 0.000000</li>
+<li><strong>Cost index:</strong> 201326657</li>
+<li><strong>Track:</strong> 12946.814453</li>
+<li><strong>Altitude:</strong> 0.000000</li>
+<li><strong>Altitude setting:</strong> 0.000000</li>
+<li><strong>Cruise altitude:</strong> 0.000000</li>
+<li><strong>Aircraft position lateral:</strong> 0.000000</li>
+<li><strong>Aircraft position long:</strong> 0.000000</li>
+<li><strong>Airspeed:</strong> 0.000000</li>
+<li><strong>Button push index:</strong> 0</li>
+<li><strong>Cdu scratchpad:</strong> 0</li>
+<li><strong>FMS button push1:</strong> 0</li>
+<li><strong>FMS button push2:</strong> 0</li>
+<li><strong>FMS button push3:</strong> 0</li>
+<li><strong>FMS button push4:</strong> 0</li>
+<li><strong>FMS button push5:</strong> 0</li>
+<li><strong>FMS button push6:</strong> 0</li>
+<li><strong>FMS button push7:</strong> 0</li>
+<li><strong>FMS button push8:</strong> 0</li>
+<li><strong>FMS button push9:</strong> 0</li>
+<li><strong>FMS button push10:</strong> 0</li>
+<li><strong>FMS button push11:</strong> 0</li>
+<li><strong>FMS button push12:</strong> 0</li>
+<li><strong>FMS button push13:</strong> 0</li>
+<li><strong>FMS button push14:</strong> 0</li>
+<li><strong>FMS button push15:</strong> 0</li>
+<li><strong>FMS button push16:</strong> 0</li>
+<li><strong>FMS button push17:</strong> 0</li>
+<li><strong>FMS button push18:</strong> 0</li>
+<li><strong>FMS button push19:</strong> 0</li>
+<li><strong>FMS button push20:</strong> 0</li>
+<li><strong>FMS button push21:</strong> 0</li>
+<li><strong>FMS button push22:</strong> 0</li>
+<li><strong>FMS button push23:</strong> 0</li>
+<li><strong>FMS button push24:</strong> 0</li>
+<li><strong>FMS button push25:</strong> 0</li>
+<li><strong>FMS button push26:</strong> 0</li>
+<li><strong>FMS button push27:</strong> 0</li>
+<li><strong>FMS button push28:</strong> 0</li>
+<li><strong>FMS button push29:</strong> 0</li>
+<li><strong>FMS button push30:</strong> 0</li>
+<li><strong>FMS button push31:</strong> 0</li>
+<li><strong>FMS button push32:</strong> 0</li>
+<li><strong>FMS button push33:</strong> 0</li>
+<li><strong>FMS button push34:</strong> 0</li>
+<li><strong>FMS button push35:</strong> 0</li>
+<li><strong>FMS button push36:</strong> 0</li>
+<li><strong>FMS button push37:</strong> 0</li>
+<li><strong>FMS button push38:</strong> 0</li>
+<li><strong>FMS button push39:</strong> 1792</li>
+<li><strong>FMS button push40:</strong> 0</li>
+<li><strong>FMS button push41:</strong> 0</li>
+<li><strong>FMS button push42:</strong> 0</li>
+<li><strong>Simsoft data:</strong> 1610612736</li>
+<li><strong>Software fault address:</strong> 537264290</li>
+<li><strong>Last in:</strong> 2</li>
+<li><strong>First in:</strong> 16</li>
+<li><strong>Left bite trc history:</strong> 6</li>
+<li><strong>Left bite trc history:</strong> 0</li>
+<li><strong>Right bite trc history:</strong> 0</li>
+<li><strong>Right bite trc history:</strong> 6</li>
+<li><strong>Ioci button push:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">1</td>
+<td class="date-time">2032-06-18 12:54:05 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Fault identifier code:</strong> 0</li>
+<li><strong>Fault identifier subcode:</strong> 0</li>
+<li><strong>Active flight leg record:</strong> 0</li>
+<li><strong>Sequence:</strong> 0</li>
+<li><strong>Date:</strong> 0</li>
+<li><strong>Time:</strong> 0</li>
+<li><strong>Master status current1:</strong> 0</li>
+<li><strong>Dual mode current1:</strong> 0</li>
+<li><strong>Opposite fms ok current1:</strong> 0</li>
+<li><strong>Other dual fms node position current1:</strong> 0</li>
+<li><strong>Standby fms node position current1:</strong> 0</li>
+<li><strong>Functional position current1:</strong> 0</li>
+<li><strong>Flight leg num current1:</strong> 0</li>
+<li><strong>Master status current2:</strong> 0</li>
+<li><strong>Dual mode current2:</strong> 0</li>
+<li><strong>Opposite fms ok current2:</strong> 0</li>
+<li><strong>Other dual fms node position current2:</strong> 0</li>
+<li><strong>Standby fms node position current2:</strong> 0</li>
+<li><strong>Functional position current2:</strong> 0</li>
+<li><strong>Flight leg num current2:</strong> 0</li>
+<li><strong>Master status previous1:</strong> 0</li>
+<li><strong>Dual mode previous1:</strong> 0</li>
+<li><strong>Opposite fms ok previous1:</strong> 0</li>
+<li><strong>Other dual fms node position previous1:</strong> 0</li>
+<li><strong>Standby fms node position previous1:</strong> 0</li>
+<li><strong>Functional position previous1:</strong> 0</li>
+<li><strong>Flight leg num previous1:</strong> 0</li>
+<li><strong>Master status previous2:</strong> 0</li>
+<li><strong>Dual mode previous2:</strong> 0</li>
+<li><strong>Opposite fms ok previous2:</strong> 0</li>
+<li><strong>Other dual fms node position previous2:</strong> 0</li>
+<li><strong>Standby fms node position previous2:</strong> 0</li>
+<li><strong>Functional position previous2:</strong> 0</li>
+<li><strong>Flight leg num previous2:</strong> 0</li>
+<li><strong>Fault response:</strong> 0</li>
+<li><strong>Capt flight director:</strong> 0</li>
+<li><strong>Fo flight director:</strong> 0</li>
+<li><strong>Flight plan:</strong> 0</li>
+<li><strong>Vnav level off:</strong> 0</li>
+<li><strong>Lnav guidance mode:</strong> 2</li>
+<li><strong>Vnav guidance mode:</strong> 0</li>
+<li><strong>Lnav status:</strong> 1</li>
+<li><strong>Vnav status:</strong> 0</li>
+<li><strong>Act navigation vs act Performance ptr:</strong> 0</li>
+<li><strong>Button push in progress:</strong> 0</li>
+<li><strong>Ndb selected cycle:</strong> 1</li>
+<li><strong>Ils mode:</strong> 1</li>
+<li><strong>Previous leg terminator:</strong> 23</li>
+<li><strong>Active leg terminator:</strong> 0</li>
+<li><strong>Right cdu title page:</strong> 0</li>
+<li><strong>Left cdu title page:</strong> 0</li>
+<li><strong>Current lateral leg Sequence:</strong> 594840771</li>
+<li><strong>Next lateral leg Sequence:</strong> -1935671226</li>
+<li><strong>Dist to active waypoint:</strong> 0.000000</li>
+<li><strong>Gross weight:</strong> 28383744.000000</li>
+<li><strong>Fuel weight:</strong> -1400520686395398815744.000000</li>
+<li><strong>Cost index:</strong> 1719664704</li>
+<li><strong>Track:</strong> 0.000000</li>
+<li><strong>Altitude:</strong> 0.000000</li>
+<li><strong>Altitude setting:</strong> 0.000000</li>
+<li><strong>Cruise altitude:</strong> 0.000000</li>
+<li><strong>Aircraft position lateral:</strong> 0.000000</li>
+<li><strong>Aircraft position long:</strong> 0.000000</li>
+<li><strong>Airspeed:</strong> 0.000000</li>
+<li><strong>Button push index:</strong> 0</li>
+<li><strong>Cdu scratchpad:</strong> 0</li>
+<li><strong>FMS button push1:</strong> 0</li>
+<li><strong>FMS button push2:</strong> 0</li>
+<li><strong>FMS button push3:</strong> 0</li>
+<li><strong>FMS button push4:</strong> 0</li>
+<li><strong>FMS button push5:</strong> 0</li>
+<li><strong>FMS button push6:</strong> 0</li>
+<li><strong>FMS button push7:</strong> 0</li>
+<li><strong>FMS button push8:</strong> 0</li>
+<li><strong>FMS button push9:</strong> 0</li>
+<li><strong>FMS button push10:</strong> 0</li>
+<li><strong>FMS button push11:</strong> 0</li>
+<li><strong>FMS button push12:</strong> 0</li>
+<li><strong>FMS button push13:</strong> 0</li>
+<li><strong>FMS button push14:</strong> 0</li>
+<li><strong>FMS button push15:</strong> 0</li>
+<li><strong>FMS button push16:</strong> 0</li>
+<li><strong>FMS button push17:</strong> 0</li>
+<li><strong>FMS button push18:</strong> 0</li>
+<li><strong>FMS button push19:</strong> 0</li>
+<li><strong>FMS button push20:</strong> 0</li>
+<li><strong>FMS button push21:</strong> 0</li>
+<li><strong>FMS button push22:</strong> 0</li>
+<li><strong>FMS button push23:</strong> 0</li>
+<li><strong>FMS button push24:</strong> 0</li>
+<li><strong>FMS button push25:</strong> 0</li>
+<li><strong>FMS button push26:</strong> 0</li>
+<li><strong>FMS button push27:</strong> 0</li>
+<li><strong>FMS button push28:</strong> 0</li>
+<li><strong>FMS button push29:</strong> 0</li>
+<li><strong>FMS button push30:</strong> 0</li>
+<li><strong>FMS button push31:</strong> 0</li>
+<li><strong>FMS button push32:</strong> 0</li>
+<li><strong>FMS button push33:</strong> 0</li>
+<li><strong>FMS button push34:</strong> 0</li>
+<li><strong>FMS button push35:</strong> 0</li>
+<li><strong>FMS button push36:</strong> 0</li>
+<li><strong>FMS button push37:</strong> 0</li>
+<li><strong>FMS button push38:</strong> 0</li>
+<li><strong>FMS button push39:</strong> 26624</li>
+<li><strong>FMS button push40:</strong> 0</li>
+<li><strong>FMS button push41:</strong> 0</li>
+<li><strong>FMS button push42:</strong> 0</li>
+<li><strong>Simsoft data:</strong> 0</li>
+<li><strong>Software fault address:</strong> 0</li>
+<li><strong>Last in:</strong> 0</li>
+<li><strong>First in:</strong> 0</li>
+<li><strong>Left bite trc history:</strong> 0</li>
+<li><strong>Left bite trc history:</strong> 0</li>
+<li><strong>Right bite trc history:</strong> 0</li>
+<li><strong>Right bite trc history:</strong> 0</li>
+<li><strong>Ioci button push:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">2</td>
+<td class="date-time">2032-06-18 01:45:32 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Fault identifier code:</strong> 0</li>
+<li><strong>Fault identifier subcode:</strong> 0</li>
+<li><strong>Active flight leg record:</strong> 0</li>
+<li><strong>Sequence:</strong> 0</li>
+<li><strong>Date:</strong> 0</li>
+<li><strong>Time:</strong> 0</li>
+<li><strong>Master status current1:</strong> 0</li>
+<li><strong>Dual mode current1:</strong> 0</li>
+<li><strong>Opposite fms ok current1:</strong> 0</li>
+<li><strong>Other dual fms node position current1:</strong> 0</li>
+<li><strong>Standby fms node position current1:</strong> 0</li>
+<li><strong>Functional position current1:</strong> 0</li>
+<li><strong>Flight leg num current1:</strong> 0</li>
+<li><strong>Master status current2:</strong> 0</li>
+<li><strong>Dual mode current2:</strong> 0</li>
+<li><strong>Opposite fms ok current2:</strong> 0</li>
+<li><strong>Other dual fms node position current2:</strong> 0</li>
+<li><strong>Standby fms node position current2:</strong> 0</li>
+<li><strong>Functional position current2:</strong> 0</li>
+<li><strong>Flight leg num current2:</strong> 0</li>
+<li><strong>Master status previous1:</strong> 0</li>
+<li><strong>Dual mode previous1:</strong> 0</li>
+<li><strong>Opposite fms ok previous1:</strong> 0</li>
+<li><strong>Other dual fms node position previous1:</strong> 0</li>
+<li><strong>Standby fms node position previous1:</strong> 0</li>
+<li><strong>Functional position previous1:</strong> 0</li>
+<li><strong>Flight leg num previous1:</strong> 0</li>
+<li><strong>Master status previous2:</strong> 0</li>
+<li><strong>Dual mode previous2:</strong> 0</li>
+<li><strong>Opposite fms ok previous2:</strong> 0</li>
+<li><strong>Other dual fms node position previous2:</strong> 0</li>
+<li><strong>Standby fms node position previous2:</strong> 0</li>
+<li><strong>Functional position previous2:</strong> 0</li>
+<li><strong>Flight leg num previous2:</strong> 0</li>
+<li><strong>Fault response:</strong> 0</li>
+<li><strong>Capt flight director:</strong> 0</li>
+<li><strong>Fo flight director:</strong> 0</li>
+<li><strong>Flight plan:</strong> 0</li>
+<li><strong>Vnav level off:</strong> 0</li>
+<li><strong>Lnav guidance mode:</strong> 2</li>
+<li><strong>Vnav guidance mode:</strong> 0</li>
+<li><strong>Lnav status:</strong> 0</li>
+<li><strong>Vnav status:</strong> 0</li>
+<li><strong>Act navigation vs act Performance ptr:</strong> 1</li>
+<li><strong>Button push in progress:</strong> 1</li>
+<li><strong>Ndb selected cycle:</strong> 1</li>
+<li><strong>Ils mode:</strong> 1</li>
+<li><strong>Previous leg terminator:</strong> 23</li>
+<li><strong>Active leg terminator:</strong> 0</li>
+<li><strong>Right cdu title page:</strong> 0</li>
+<li><strong>Left cdu title page:</strong> 33</li>
+<li><strong>Active waypoint:</strong> L7sB??????Be`3E</li>
+<li><strong>Active waypoint:</strong> ??????Be`3E</li>
+<li><strong>Current lateral leg Sequence:</strong> 861955394</li>
+<li><strong>Next lateral leg Sequence:</strong> 998244421</li>
+<li><strong>Dist to active waypoint:</strong> 0.000000</li>
+<li><strong>Gross weight:</strong> 160044.000000</li>
+<li><strong>Fuel weight:</strong> 0.000000</li>
+<li><strong>Cost index:</strong> 201326657</li>
+<li><strong>Track:</strong> 0.000000</li>
+<li><strong>Altitude:</strong> 0.000000</li>
+<li><strong>Altitude setting:</strong> 0.000000</li>
+<li><strong>Cruise altitude:</strong> 0.000000</li>
+<li><strong>Aircraft position lateral:</strong> 0.000000</li>
+<li><strong>Aircraft position long:</strong> 0.000000</li>
+<li><strong>Airspeed:</strong> 0.000000</li>
+<li><strong>Button push index:</strong> 20480</li>
+<li><strong>Cdu scratchpad:</strong> 1792</li>
+<li><strong>FMS button push1:</strong> 117440768</li>
+<li><strong>FMS button push2:</strong> 117440768</li>
+<li><strong>FMS button push3:</strong> 167772416</li>
+<li><strong>FMS button push4:</strong> 16777472</li>
+<li><strong>FMS button push5:</strong> 167772416</li>
+<li><strong>FMS button push6:</strong> 16777472</li>
+<li><strong>FMS button push7:</strong> 436207872</li>
+<li><strong>FMS button push8:</strong> 184549888</li>
+<li><strong>FMS button push9:</strong> 67109120</li>
+<li><strong>FMS button push10:</strong> 67109120</li>
+<li><strong>FMS button push11:</strong> 117440768</li>
+<li><strong>FMS button push12:</strong> 117440768</li>
+<li><strong>FMS button push13:</strong> 117440768</li>
+<li><strong>FMS button push14:</strong> 117440768</li>
+<li><strong>FMS button push15:</strong> 167772416</li>
+<li><strong>FMS button push16:</strong> 50331904</li>
+<li><strong>FMS button push17:</strong> 117440768</li>
+<li><strong>FMS button push18:</strong> 16777472</li>
+<li><strong>FMS button push19:</strong> 184549632</li>
+<li><strong>FMS button push20:</strong> 117440768</li>
+<li><strong>FMS button push21:</strong> 67109120</li>
+<li><strong>FMS button push22:</strong> 2650800384</li>
+<li><strong>FMS button push23:</strong> 2164330498</li>
+<li><strong>FMS button push24:</strong> 50335744</li>
+<li><strong>FMS button push25:</strong> 0</li>
+<li><strong>FMS button push26:</strong> 1207959552</li>
+<li><strong>FMS button push27:</strong> 69634</li>
+<li><strong>FMS button push28:</strong> 436207616</li>
+<li><strong>FMS button push29:</strong> 318767616</li>
+<li><strong>FMS button push30:</strong> 184549888</li>
+<li><strong>FMS button push31:</strong> 67109120</li>
+<li><strong>FMS button push32:</strong> 436207872</li>
+<li><strong>FMS button push33:</strong> 512</li>
+<li><strong>FMS button push34:</strong> 512</li>
+<li><strong>FMS button push35:</strong> 256</li>
+<li><strong>FMS button push36:</strong> 0</li>
+<li><strong>FMS button push37:</strong> 0</li>
+<li><strong>FMS button push38:</strong> 0</li>
+<li><strong>FMS button push39:</strong> 5376</li>
+<li><strong>FMS button push40:</strong> 0</li>
+<li><strong>FMS button push41:</strong> 369098752</li>
+<li><strong>FMS button push42:</strong> 16988929</li>
+<li><strong>Simsoft data:</strong> 570425344</li>
+<li><strong>Software fault address:</strong> 553648134</li>
+<li><strong>Last in:</strong> 0</li>
+<li><strong>First in:</strong> 34</li>
+<li><strong>Left bite trc history:</strong> 0</li>
+<li><strong>Left bite trc history:</strong> 6</li>
+<li><strong>Right bite trc history:</strong> 0</li>
+<li><strong>Right bite trc history:</strong> 0</li>
+<li><strong>Ioci button push:</strong> 6</li>
+</ul></div>
+</td>
+</tr>
+</table>
+</body>
+</html>

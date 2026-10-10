@@ -1,0 +1,2436 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Public-Safe Left FMS Diagnostic Log</title>
+<style>
+        :root {
+            --background-light: #f4f4f4;
+            --background-dark: #333;
+            --text-light: #000;
+            --text-dark: #fff;
+            --table-background-light: #fff;
+            --table-background-dark: #444;
+            --table-header-light: #f2f2f2;
+            --table-header-dark: #666;
+            --table-border-light: #ddd;
+            --table-border-dark: #666;
+            --hover-light: #e5e5e5;
+            --hover-dark: #777;
+            --alternate-row-light: #f2f2f2;
+            --alternate-row-dark: #555;
+            --muted-text-light: #888;
+            --muted-text-dark: #bbb;
+            --error-color-light: #b00020;
+            --error-color-dark: #ff6b6b;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            margin: 0;
+            padding: 10px 14px;
+            font-size: 12px;
+            line-height: 1.25;
+        }
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--table-background-light);
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            table-layout: auto;
+        }
+        .log-table th, .log-table td {
+            padding: 4px 6px;
+            text-align: left;
+            border: 1px solid var(--table-border-light);
+            font-size: 11.5px;
+        }
+        .log-table th.center, .log-table td.center {
+            text-align: center;
+        }
+        .log-table th.date-time, .log-table td.date-time {
+            white-space: nowrap;
+        }
+        .log-table td.date-time {
+            font-variant-numeric: tabular-nums;
+        }
+        .log-table th {
+            background-color: var(--table-header-light);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 1.2;
+            vertical-align: middle;
+        }
+        .log-table td {
+            vertical-align: top;
+        }
+        .log-table tr:nth-child(even) {
+            background-color: var(--alternate-row-light);
+        }
+        .log-table tr:hover {
+            background-color: var(--hover-light);
+        }
+        .na-data {
+            color: var(--muted-text-light);
+            font-style: italic;
+        }
+        .red-na-data {
+            color: var(--error-color-light);
+            font-style: italic;
+        }
+        .invalid-data {
+            color: var(--error-color-light);
+            font-weight: 600;
+        }
+        .page-heading {
+            text-align: center;
+            margin: 8px 0 12px 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .page-subheading {
+            display: block;
+            font-size: 14px;
+            margin-top: 4px;
+            color: var(--muted-text-light);
+            font-weight: 400;
+        }
+        .data-words {
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        .msg {
+            column-gap: 18px;
+            column-fill: balance;
+        }
+        @media (min-width: 1400px) {
+            .msg {
+                column-width: 260px;
+            }
+        }
+        .msg ul {
+            margin: 0;
+            padding-left: 16px;
+        }
+        .msg li {
+            break-inside: avoid;
+            -webkit-column-break-inside: avoid;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: var(--background-dark);
+                color: var(--text-dark);
+            }
+            .log-table {
+                background-color: var(--table-background-dark);
+            }
+            .log-table th, .log-table td {
+                border: 1px solid var(--table-border-dark);
+            }
+            .log-table th {
+                background-color: var(--table-header-dark);
+            }
+            .log-table tr:nth-child(even) {
+                background-color: var(--alternate-row-dark);
+            }
+            .log-table tr:hover {
+                background-color: var(--hover-dark);
+            }
+            .na-data {
+                color: var(--muted-text-dark);
+            }
+            .red-na-data {
+                color: var(--error-color-dark);
+            }
+            .invalid-data {
+                color: var(--error-color-dark);
+            }
+            .page-subheading {
+                color: var(--muted-text-dark);
+            }
+        }
+    </style>
+</head>
+<body>
+<h1 class="page-heading">Public-Safe Left FMS Diagnostic Log</h1>
+<table class="log-table">
+<tr>
+<th class="center">Sequence number</th>
+<th class="date-time">Date and time</th>
+<th class="center">Message</th>
+</tr>
+<tr>
+<td class="center">49</td>
+<td class="date-time">2032-06-18 01:05:18 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">50</td>
+<td class="date-time">2032-06-18 01:05:19 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">51</td>
+<td class="date-time">2032-06-18 01:05:20 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">52</td>
+<td class="date-time">2032-06-18 01:45:31 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">53</td>
+<td class="date-time">2032-06-18 01:46:49 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">54</td>
+<td class="date-time">2032-06-18 01:46:49 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">55</td>
+<td class="date-time">2032-06-18 01:59:58 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">56</td>
+<td class="date-time">2032-06-18 01:59:59 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">57</td>
+<td class="date-time">2032-06-18 02:00:00 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">58</td>
+<td class="date-time">2032-06-18 02:00:01 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">59</td>
+<td class="date-time">2032-06-18 02:00:03 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">60</td>
+<td class="date-time">2032-06-18 02:00:04 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">7</td>
+<td class="date-time">2032-06-18 09:41:31 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">8</td>
+<td class="date-time">2032-06-18 09:41:31 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">9</td>
+<td class="date-time">2032-06-18 09:41:32 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">10</td>
+<td class="date-time">2032-06-18 09:41:36 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">11</td>
+<td class="date-time">2032-06-18 09:41:37 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">12</td>
+<td class="date-time">2032-06-18 09:42:45 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">13</td>
+<td class="date-time">2032-06-18 09:42:46 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">14</td>
+<td class="date-time">2032-06-18 09:42:50 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">15</td>
+<td class="date-time">2032-06-18 09:43:06 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">16</td>
+<td class="date-time">2032-06-18 09:43:07 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">17</td>
+<td class="date-time">2032-06-18 09:46:35 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">18</td>
+<td class="date-time">2032-06-18 09:46:36 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">19</td>
+<td class="date-time">2032-06-18 09:46:36 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">20</td>
+<td class="date-time">2032-06-18 09:46:38 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">21</td>
+<td class="date-time">2032-06-18 09:46:40 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">22</td>
+<td class="date-time">2032-06-18 09:46:41 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">23</td>
+<td class="date-time">2032-06-18 09:46:42 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">24</td>
+<td class="date-time">2032-06-18 09:46:44 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">25</td>
+<td class="date-time">2032-06-18 09:47:02 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">26</td>
+<td class="date-time">2032-06-18 09:47:02 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">27</td>
+<td class="date-time">2032-06-18 09:47:02 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">28</td>
+<td class="date-time">2032-06-18 09:47:02 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">29</td>
+<td class="date-time">2032-06-18 09:47:02 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">30</td>
+<td class="date-time">2032-06-18 09:47:02 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">31</td>
+<td class="date-time">2032-06-18 10:25:50 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">32</td>
+<td class="date-time">2032-06-18 10:25:50 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Standby</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">33</td>
+<td class="date-time">2032-06-18 10:25:51 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Standby</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">34</td>
+<td class="date-time">2032-06-18 10:25:51 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">35</td>
+<td class="date-time">2032-06-18 10:25:51 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">36</td>
+<td class="date-time">2032-06-18 10:25:52 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">37</td>
+<td class="date-time">2032-06-18 10:25:52 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">38</td>
+<td class="date-time">2032-06-18 10:25:53 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">39</td>
+<td class="date-time">2032-06-18 10:25:56 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">40</td>
+<td class="date-time">2032-06-18 10:25:57 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">41</td>
+<td class="date-time">2032-06-18 10:27:08 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">42</td>
+<td class="date-time">2032-06-18 10:27:09 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">43</td>
+<td class="date-time">2032-06-18 10:27:10 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">44</td>
+<td class="date-time">2032-06-18 11:30:48 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">45</td>
+<td class="date-time">2032-06-18 11:30:49 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">46</td>
+<td class="date-time">2032-06-18 11:30:51 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">47</td>
+<td class="date-time">2032-06-18 11:30:52 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">48</td>
+<td class="date-time">2032-06-18 11:30:53 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">49</td>
+<td class="date-time">2032-06-18 11:30:58 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">50</td>
+<td class="date-time">2032-06-18 11:31:12 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">51</td>
+<td class="date-time">2032-06-18 11:31:16 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">52</td>
+<td class="date-time">2032-06-18 11:31:18 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">53</td>
+<td class="date-time">2032-06-18 11:31:20 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">1</td>
+<td class="date-time">2032-06-18 11:46:37 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">2</td>
+<td class="date-time">2032-06-18 11:46:37 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Standby</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">3</td>
+<td class="date-time">2032-06-18 11:46:38 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">4</td>
+<td class="date-time">2032-06-18 11:46:38 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">5</td>
+<td class="date-time">2032-06-18 11:46:38 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">6</td>
+<td class="date-time">2032-06-18 11:46:38 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">7</td>
+<td class="date-time">2032-06-18 11:46:38 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">8</td>
+<td class="date-time">2032-06-18 11:48:00 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">9</td>
+<td class="date-time">2032-06-18 11:48:01 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">10</td>
+<td class="date-time">2032-06-18 11:48:02 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">11</td>
+<td class="date-time">2032-06-18 11:49:22 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">12</td>
+<td class="date-time">2032-06-18 11:49:24 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Standby</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">13</td>
+<td class="date-time">2032-06-18 11:49:25 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Standby</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">14</td>
+<td class="date-time">2032-06-18 11:49:25 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">15</td>
+<td class="date-time">2032-06-18 11:49:26 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">16</td>
+<td class="date-time">2032-06-18 11:49:26 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">17</td>
+<td class="date-time">2032-06-18 11:49:27 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">18</td>
+<td class="date-time">2032-06-18 11:50:49 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">19</td>
+<td class="date-time">2032-06-18 11:50:49 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">20</td>
+<td class="date-time">2032-06-18 11:50:50 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">21</td>
+<td class="date-time">2032-06-18 11:50:51 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">1</td>
+<td class="date-time">2032-06-18 11:58:13 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">2</td>
+<td class="date-time">2032-06-18 11:58:13 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Standby</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">3</td>
+<td class="date-time">2032-06-18 11:58:14 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">4</td>
+<td class="date-time">2032-06-18 11:58:14 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">5</td>
+<td class="date-time">2032-06-18 11:58:14 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">6</td>
+<td class="date-time">2032-06-18 11:58:14 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">7</td>
+<td class="date-time">2032-06-18 11:58:15 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">8</td>
+<td class="date-time">2032-06-18 11:59:37 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">9</td>
+<td class="date-time">2032-06-18 11:59:38 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">10</td>
+<td class="date-time">2032-06-18 11:59:39 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">11</td>
+<td class="date-time">2032-06-18 11:59:46 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">12</td>
+<td class="date-time">2032-06-18 11:59:47 AM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">13</td>
+<td class="date-time">2032-06-18 12:01:00 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">14</td>
+<td class="date-time">2032-06-18 12:01:01 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Standby</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">15</td>
+<td class="date-time">2032-06-18 12:01:02 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Standby</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">16</td>
+<td class="date-time">2032-06-18 12:01:02 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">17</td>
+<td class="date-time">2032-06-18 12:01:03 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">18</td>
+<td class="date-time">2032-06-18 12:01:03 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">19</td>
+<td class="date-time">2032-06-18 12:01:04 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">20</td>
+<td class="date-time">2032-06-18 12:02:54 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">21</td>
+<td class="date-time">2032-06-18 12:02:54 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">22</td>
+<td class="date-time">2032-06-18 12:02:55 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">23</td>
+<td class="date-time">2032-06-18 12:03:03 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">1</td>
+<td class="date-time">2032-06-18 12:10:18 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">2</td>
+<td class="date-time">2032-06-18 12:10:18 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Standby</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Standby</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">3</td>
+<td class="date-time">2032-06-18 12:10:19 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unknown</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">4</td>
+<td class="date-time">2032-06-18 12:10:19 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">5</td>
+<td class="date-time">2032-06-18 12:13:48 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node invalid</li>
+<li><strong>Standby fms node position:</strong> FMS node right</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">6</td>
+<td class="date-time">2032-06-18 12:13:49 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node right</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">7</td>
+<td class="date-time">2032-06-18 12:13:49 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">8</td>
+<td class="date-time">2032-06-18 12:13:50 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">9</td>
+<td class="date-time">2032-06-18 12:13:51 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">10</td>
+<td class="date-time">2032-06-18 12:13:52 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">11</td>
+<td class="date-time">2032-06-18 12:15:44 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">12</td>
+<td class="date-time">2032-06-18 12:17:45 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node center</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">13</td>
+<td class="date-time">2032-06-18 12:17:46 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">14</td>
+<td class="date-time">2032-06-18 12:17:47 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">15</td>
+<td class="date-time">2032-06-18 12:18:58 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">16</td>
+<td class="date-time">2032-06-18 12:18:59 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">17</td>
+<td class="date-time">2032-06-18 12:19:00 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">18</td>
+<td class="date-time">2032-06-18 12:19:05 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">19</td>
+<td class="date-time">2032-06-18 12:19:06 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">20</td>
+<td class="date-time">2032-06-18 12:20:18 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">21</td>
+<td class="date-time">2032-06-18 12:20:19 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">22</td>
+<td class="date-time">2032-06-18 12:20:20 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">23</td>
+<td class="date-time">2032-06-18 12:21:06 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">24</td>
+<td class="date-time">2032-06-18 12:21:07 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">25</td>
+<td class="date-time">2032-06-18 12:21:08 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">26</td>
+<td class="date-time">2032-06-18 12:21:09 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">27</td>
+<td class="date-time">2032-06-18 12:21:10 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">28</td>
+<td class="date-time">2032-06-18 12:21:11 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">29</td>
+<td class="date-time">2032-06-18 12:21:12 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">30</td>
+<td class="date-time">2032-06-18 12:21:13 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">31</td>
+<td class="date-time">2032-06-18 12:21:15 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">32</td>
+<td class="date-time">2032-06-18 12:21:16 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">33</td>
+<td class="date-time">2032-06-18 12:21:16 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">34</td>
+<td class="date-time">2032-06-18 12:21:17 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">35</td>
+<td class="date-time">2032-06-18 12:21:18 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">36</td>
+<td class="date-time">2032-06-18 12:21:20 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">37</td>
+<td class="date-time">2032-06-18 12:53:58 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node right</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">38</td>
+<td class="date-time">2032-06-18 12:55:15 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">39</td>
+<td class="date-time">2032-06-18 12:55:16 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node right</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">40</td>
+<td class="date-time">2032-06-18 01:01:20 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node right</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">41</td>
+<td class="date-time">2032-06-18 01:01:21 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Dual</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node right</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">42</td>
+<td class="date-time">2032-06-18 01:01:27 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node right</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">43</td>
+<td class="date-time">2032-06-18 01:01:32 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node center</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">44</td>
+<td class="date-time">2032-06-18 01:02:44 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">45</td>
+<td class="date-time">2032-06-18 01:02:44 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">46</td>
+<td class="date-time">2032-06-18 01:02:45 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">47</td>
+<td class="date-time">2032-06-18 01:02:56 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Unstable</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">48</td>
+<td class="date-time">2032-06-18 01:02:57 PM</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Master status:</strong> Master</li>
+<li><strong>Dual mode:</strong> Single</li>
+<li><strong>Opposite fms ok:</strong> Not ok</li>
+<li><strong>Other dual fms node position:</strong> FMS node right</li>
+<li><strong>Standby fms node position:</strong> FMS node invalid</li>
+<li><strong>Functional position:</strong> Captain</li>
+<li><strong>Flight leg num:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+</table>
+</body>
+</html>

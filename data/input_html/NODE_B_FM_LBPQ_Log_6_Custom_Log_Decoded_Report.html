@@ -1,0 +1,6319 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Public-Safe Center FMS Diagnostic Log</title>
+<style>
+        :root {
+            --background-light: #f4f4f4;
+            --background-dark: #333;
+            --text-light: #000;
+            --text-dark: #fff;
+            --table-background-light: #fff;
+            --table-background-dark: #444;
+            --table-header-light: #f2f2f2;
+            --table-header-dark: #666;
+            --table-border-light: #ddd;
+            --table-border-dark: #666;
+            --hover-light: #e5e5e5;
+            --hover-dark: #777;
+            --alternate-row-light: #f2f2f2;
+            --alternate-row-dark: #555;
+            --muted-text-light: #888;
+            --muted-text-dark: #bbb;
+            --error-color-light: #b00020;
+            --error-color-dark: #ff6b6b;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            margin: 0;
+            padding: 10px 14px;
+            font-size: 12px;
+            line-height: 1.25;
+        }
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--table-background-light);
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            table-layout: auto;
+        }
+        .log-table th, .log-table td {
+            padding: 4px 6px;
+            text-align: left;
+            border: 1px solid var(--table-border-light);
+            font-size: 11.5px;
+        }
+        .log-table th.center, .log-table td.center {
+            text-align: center;
+        }
+        .log-table th.date-time, .log-table td.date-time {
+            white-space: nowrap;
+        }
+        .log-table td.date-time {
+            font-variant-numeric: tabular-nums;
+        }
+        .log-table th {
+            background-color: var(--table-header-light);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 1.2;
+            vertical-align: middle;
+        }
+        .log-table td {
+            vertical-align: top;
+        }
+        .log-table tr:nth-child(even) {
+            background-color: var(--alternate-row-light);
+        }
+        .log-table tr:hover {
+            background-color: var(--hover-light);
+        }
+        .na-data {
+            color: var(--muted-text-light);
+            font-style: italic;
+        }
+        .red-na-data {
+            color: var(--error-color-light);
+            font-style: italic;
+        }
+        .invalid-data {
+            color: var(--error-color-light);
+            font-weight: 600;
+        }
+        .page-heading {
+            text-align: center;
+            margin: 8px 0 12px 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .page-subheading {
+            display: block;
+            font-size: 14px;
+            margin-top: 4px;
+            color: var(--muted-text-light);
+            font-weight: 400;
+        }
+        .data-words {
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        .msg {
+            column-gap: 18px;
+            column-fill: balance;
+        }
+        @media (min-width: 1400px) {
+            .msg {
+                column-width: 260px;
+            }
+        }
+        .msg ul {
+            margin: 0;
+            padding-left: 16px;
+        }
+        .msg li {
+            break-inside: avoid;
+            -webkit-column-break-inside: avoid;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: var(--background-dark);
+                color: var(--text-dark);
+            }
+            .log-table {
+                background-color: var(--table-background-dark);
+            }
+            .log-table th, .log-table td {
+                border: 1px solid var(--table-border-dark);
+            }
+            .log-table th {
+                background-color: var(--table-header-dark);
+            }
+            .log-table tr:nth-child(even) {
+                background-color: var(--alternate-row-dark);
+            }
+            .log-table tr:hover {
+                background-color: var(--hover-dark);
+            }
+            .na-data {
+                color: var(--muted-text-dark);
+            }
+            .red-na-data {
+                color: var(--error-color-dark);
+            }
+            .invalid-data {
+                color: var(--error-color-dark);
+            }
+            .page-subheading {
+                color: var(--muted-text-dark);
+            }
+        }
+    </style>
+</head>
+<body>
+<h1 class="page-heading">Public-Safe Center FMS Diagnostic Log</h1>
+<table class="log-table">
+<tr>
+<th class="center">Sequence number</th>
+<th class="date-time">Date and time</th>
+<th>Data Identifier</th>
+<th>Data Format</th>
+<th>Left FMS node</th>
+<th>Center FMS node</th>
+<th>Right FMS node</th>
+<th>Dual</th>
+<th>Latitude</th>
+<th>Longitude</th>
+<th>Altitude</th>
+<th class="center">Message</th>
+</tr>
+<tr>
+<td class="center">1</td>
+<td class="date-time">2032-06-18 09:41:29 AM</td>
+<td>Operational startup mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational startup mode:</strong> Operational startup cold</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">2</td>
+<td class="date-time">2032-06-18 09:41:29 AM</td>
+<td>Dual mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational dual mode:</strong> Operational dual mode Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">3</td>
+<td class="date-time">2032-06-18 09:41:29 AM</td>
+<td>Operational powerup identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational powerup:</strong> Operational powerup normal</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">4</td>
+<td class="date-time">2032-06-18 09:41:37 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">5</td>
+<td class="date-time">2032-06-18 09:41:43 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">6</td>
+<td class="date-time">2032-06-18 09:41:49 AM</td>
+<td>Opc configuration data identifier</td>
+<td>Format opc configuration data</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Configuration data</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Performance custo 3:</strong> False</li>
+<li><strong>Performance custo 2:</strong> False</li>
+<li><strong>Performance custo 1:</strong> False</li>
+<li><strong>Operational data link datalink:</strong> True</li>
+<li><strong>Air traffic service enable:</strong> True</li>
+<li><strong>Kilogram enable:</strong> True</li>
+<li><strong>Metric enable:</strong> True</li>
+<li><strong>Operate use:</strong> 0</li>
+<li><strong>Display trajectory:</strong> 1</li>
+<li><strong>Grid mora enable:</strong> True</li>
+<li><strong>Connectivity func enable:</strong> 0</li>
+<li><strong>I4d rta enable:</strong> False</li>
+<li><strong>Radio navigation 2 installed:</strong> True</li>
+<li><strong>Aim disable:</strong> True</li>
+<li><strong>No radio navigation on board:</strong> False</li>
+<li><strong>Passenger count enable:</strong> True</li>
+<li><strong>Fls enable:</strong> True</li>
+<li><strong>To securization enable:</strong> True</li>
+<li><strong>No ap fd mda mdh disconnect:</strong> True</li>
+<li><strong>To derate enable:</strong> True</li>
+<li><strong>Climb derate enable:</strong> False</li>
+<li><strong>Fnl des enable:</strong> True</li>
+<li><strong>Cda enable:</strong> 1</li>
+<li><strong>Cpdb opc enable:</strong> False</li>
+<li><strong>Vor2 dme2 on board:</strong> True</li>
+<li><strong>Rnp function enable:</strong> True</li>
+<li><strong>Leg sequencing monitoring enable:</strong> True</li>
+<li><strong>Resync check enable:</strong> True</li>
+<li><strong>To securization 2 enable:</strong> True</li>
+<li><strong>Sbas enable:</strong> True</li>
+<li><strong>Sls enable:</strong> True</li>
+<li><strong>Jfgw display on mfd enable:</strong> True</li>
+<li><strong>Acr 2 on board:</strong> False</li>
+<li><strong>Vertical display enable:</strong> True</li>
+<li><strong>FMS trjctry on vd enable:</strong> True</li>
+<li><strong>Mora on vd enable:</strong> True</li>
+<li><strong>Msa on vd enable:</strong> True</li>
+<li><strong>Etoc enable:</strong> True</li>
+<li><strong>Freeze scale on vd enable:</strong> False</li>
+<li><strong>Fls axis on vd enable:</strong> True</li>
+<li><strong>Aess twsf trjctry enable:</strong> True</li>
+<li><strong>Auto derate climb enable:</strong> True</li>
+<li><strong>Polar navigation enabled:</strong> True</li>
+<li><strong>Back beam approach en:</strong> True</li>
+<li><strong>FMS platform type 1:</strong> True</li>
+<li><strong>FMS platform type 2:</strong> True</li>
+<li><strong>FMS platform type 3:</strong> False</li>
+<li><strong>FMS platform type 4:</strong> False</li>
+<li><strong>FMS engine manuf 1:</strong> False</li>
+<li><strong>FMS engine manuf 2:</strong> True</li>
+<li><strong>FMS engine manuf 3:</strong> False</li>
+<li><strong>FMS engine type 1:</strong> False</li>
+<li><strong>FMS engine type 2:</strong> True</li>
+<li><strong>FMS engine type 3:</strong> False</li>
+<li><strong>FMS engine type 4:</strong> False</li>
+<li><strong>FMS engine type 5:</strong> False</li>
+<li><strong>Takeoff rnp:</strong> 1.000000</li>
+<li><strong>Gps approach rnp:</strong> 0.300000</li>
+<li><strong>Precision approach rnp:</strong> 0.500000</li>
+<li><strong>Nonprecision approach rnp:</strong> 0.500000</li>
+<li><strong>Terminal rnp:</strong> 1.000000</li>
+<li><strong>Enroute rnp:</strong> 2.000000</li>
+<li><strong>Oceanic rnp:</strong> 2.000000</li>
+<li><strong>Takeoff tla:</strong> 110.991997</li>
+<li><strong>Takeoff hal:</strong> 1.000000</li>
+<li><strong>Approach hal:</strong> 0.300000</li>
+<li><strong>Terminal hal:</strong> 1.000000</li>
+<li><strong>Enroute hal:</strong> 2.000000</li>
+<li><strong>Oceanic hal:</strong> 2.000000</li>
+<li><strong>Tail number 32:</strong> .F-Wzht</li>
+<li><strong>Tail number 16:</strong> Zht</li>
+<li><strong>Tail number 8:</strong> T</li>
+<li><strong>Max gw:</strong> 0.000000</li>
+<li><strong>Max zfw:</strong> 0.000000</li>
+<li><strong>Configuration data version:</strong> [Redacted Payload]</li>
+<li><strong>Opc integrity validation:</strong> 61</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">7</td>
+<td class="date-time">2032-06-18 09:41:50 AM</td>
+<td>Sys status identifier</td>
+<td>Format sys status</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Sys</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Platform family:</strong> A350</li>
+<li><strong>Air frame ident:</strong> A350</li>
+<li><strong>FMS node physical position:</strong> Center</li>
+<li><strong>Engine ident:</strong> Trent</li>
+<li><strong>Engine manufact:</strong> 2</li>
+<li><strong>Opsys pn:</strong> Hnp5dxcl01xea01</li>
+<li><strong>Ndb pn:</strong> Abv2601l01</li>
+<li><strong>Ami database pn:</strong> Hnp40</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xcd03fido1</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xed03xh004</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp56xcd06xha08</li>
+<li><strong>Hardware pn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Hardware sn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Tail number:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Cpdb pn:</strong> Not loaded</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">8</td>
+<td class="date-time">2032-06-18 09:42:55 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">9</td>
+<td class="date-time">2032-06-18 09:56:09 AM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">10</td>
+<td class="date-time">2032-06-18 09:56:09 AM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">11</td>
+<td class="date-time">2032-06-18 09:56:13 AM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">12</td>
+<td class="date-time">2032-06-18 09:56:13 AM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">13</td>
+<td class="date-time">2032-06-18 10:24:45 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">14</td>
+<td class="date-time">2032-06-18 10:25:54 AM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">15</td>
+<td class="date-time">2032-06-18 10:25:54 AM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">16</td>
+<td class="date-time">2032-06-18 10:25:55 AM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">17</td>
+<td class="date-time">2032-06-18 10:25:55 AM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">18</td>
+<td class="date-time">2032-06-18 10:26:03 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">19</td>
+<td class="date-time">2032-06-18 10:27:15 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">20</td>
+<td class="date-time">2032-06-18 11:31:11 AM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">21</td>
+<td class="date-time">2032-06-18 11:31:11 AM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">22</td>
+<td class="date-time">2032-06-18 11:31:12 AM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">23</td>
+<td class="date-time">2032-06-18 11:31:12 AM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">24</td>
+<td class="date-time">2032-06-18 11:44:31 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">25</td>
+<td class="date-time">2032-06-18 11:44:41 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Standby</td>
+<td>Master</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">26</td>
+<td class="date-time">2032-06-18 11:47:38 AM</td>
+<td>Operational startup mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational startup mode:</strong> Operational startup cold</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">27</td>
+<td class="date-time">2032-06-18 11:47:38 AM</td>
+<td>Dual mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational dual mode:</strong> Operational dual mode Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">28</td>
+<td class="date-time">2032-06-18 11:47:38 AM</td>
+<td>Operational powerup identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational powerup:</strong> Operational powerup normal</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">29</td>
+<td class="date-time">2032-06-18 11:47:39 AM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Please wait</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">30</td>
+<td class="date-time">2032-06-18 11:47:39 AM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Please wait</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">31</td>
+<td class="date-time">2032-06-18 11:47:44 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">32</td>
+<td class="date-time">2032-06-18 11:49:01 AM</td>
+<td>Operational startup mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational startup mode:</strong> Operational startup cold</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">33</td>
+<td class="date-time">2032-06-18 11:49:01 AM</td>
+<td>Operational powerup identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational powerup:</strong> Operational powerup normal</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">34</td>
+<td class="date-time">2032-06-18 11:49:06 AM</td>
+<td>Data link comm master identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Data link comm master status log:</strong> Data link comm slave to master</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">35</td>
+<td class="date-time">2032-06-18 11:49:07 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">36</td>
+<td class="date-time">2032-06-18 11:49:09 AM</td>
+<td>Dual mode identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational dual mode:</strong> Operational dual mode Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">37</td>
+<td class="date-time">2032-06-18 11:49:15 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">38</td>
+<td class="date-time">2032-06-18 11:49:16 AM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">39</td>
+<td class="date-time">2032-06-18 11:49:16 AM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">40</td>
+<td class="date-time">2032-06-18 11:49:21 AM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">41</td>
+<td class="date-time">2032-06-18 11:49:21 AM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">42</td>
+<td class="date-time">2032-06-18 11:49:21 AM</td>
+<td>Opc configuration data identifier</td>
+<td>Format opc configuration data</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Configuration data</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Performance custo 3:</strong> False</li>
+<li><strong>Performance custo 2:</strong> False</li>
+<li><strong>Performance custo 1:</strong> False</li>
+<li><strong>Operational data link datalink:</strong> True</li>
+<li><strong>Air traffic service enable:</strong> True</li>
+<li><strong>Kilogram enable:</strong> True</li>
+<li><strong>Metric enable:</strong> True</li>
+<li><strong>Operate use:</strong> 0</li>
+<li><strong>Display trajectory:</strong> 1</li>
+<li><strong>Grid mora enable:</strong> True</li>
+<li><strong>Connectivity func enable:</strong> 0</li>
+<li><strong>I4d rta enable:</strong> False</li>
+<li><strong>Radio navigation 2 installed:</strong> True</li>
+<li><strong>Aim disable:</strong> True</li>
+<li><strong>No radio navigation on board:</strong> False</li>
+<li><strong>Passenger count enable:</strong> True</li>
+<li><strong>Fls enable:</strong> True</li>
+<li><strong>To securization enable:</strong> True</li>
+<li><strong>No ap fd mda mdh disconnect:</strong> True</li>
+<li><strong>To derate enable:</strong> True</li>
+<li><strong>Climb derate enable:</strong> False</li>
+<li><strong>Fnl des enable:</strong> True</li>
+<li><strong>Cda enable:</strong> 1</li>
+<li><strong>Cpdb opc enable:</strong> False</li>
+<li><strong>Vor2 dme2 on board:</strong> True</li>
+<li><strong>Rnp function enable:</strong> True</li>
+<li><strong>Leg sequencing monitoring enable:</strong> True</li>
+<li><strong>Resync check enable:</strong> True</li>
+<li><strong>To securization 2 enable:</strong> True</li>
+<li><strong>Sbas enable:</strong> True</li>
+<li><strong>Sls enable:</strong> True</li>
+<li><strong>Jfgw display on mfd enable:</strong> True</li>
+<li><strong>Acr 2 on board:</strong> False</li>
+<li><strong>Vertical display enable:</strong> True</li>
+<li><strong>FMS trjctry on vd enable:</strong> True</li>
+<li><strong>Mora on vd enable:</strong> True</li>
+<li><strong>Msa on vd enable:</strong> True</li>
+<li><strong>Etoc enable:</strong> True</li>
+<li><strong>Freeze scale on vd enable:</strong> False</li>
+<li><strong>Fls axis on vd enable:</strong> True</li>
+<li><strong>Aess twsf trjctry enable:</strong> True</li>
+<li><strong>Auto derate climb enable:</strong> True</li>
+<li><strong>Polar navigation enabled:</strong> True</li>
+<li><strong>Back beam approach en:</strong> True</li>
+<li><strong>FMS platform type 1:</strong> True</li>
+<li><strong>FMS platform type 2:</strong> True</li>
+<li><strong>FMS platform type 3:</strong> False</li>
+<li><strong>FMS platform type 4:</strong> False</li>
+<li><strong>FMS engine manuf 1:</strong> False</li>
+<li><strong>FMS engine manuf 2:</strong> True</li>
+<li><strong>FMS engine manuf 3:</strong> False</li>
+<li><strong>FMS engine type 1:</strong> False</li>
+<li><strong>FMS engine type 2:</strong> True</li>
+<li><strong>FMS engine type 3:</strong> False</li>
+<li><strong>FMS engine type 4:</strong> False</li>
+<li><strong>FMS engine type 5:</strong> False</li>
+<li><strong>Takeoff rnp:</strong> 1.000000</li>
+<li><strong>Gps approach rnp:</strong> 0.300000</li>
+<li><strong>Precision approach rnp:</strong> 0.500000</li>
+<li><strong>Nonprecision approach rnp:</strong> 0.500000</li>
+<li><strong>Terminal rnp:</strong> 1.000000</li>
+<li><strong>Enroute rnp:</strong> 2.000000</li>
+<li><strong>Oceanic rnp:</strong> 2.000000</li>
+<li><strong>Takeoff tla:</strong> 110.991997</li>
+<li><strong>Takeoff hal:</strong> 1.000000</li>
+<li><strong>Approach hal:</strong> 0.300000</li>
+<li><strong>Terminal hal:</strong> 1.000000</li>
+<li><strong>Enroute hal:</strong> 2.000000</li>
+<li><strong>Oceanic hal:</strong> 2.000000</li>
+<li><strong>Tail number 32:</strong> .F-Wzht</li>
+<li><strong>Tail number 16:</strong> Zht</li>
+<li><strong>Tail number 8:</strong> T</li>
+<li><strong>Max gw:</strong> 0.000000</li>
+<li><strong>Max zfw:</strong> 0.000000</li>
+<li><strong>Configuration data version:</strong> [Redacted Payload]</li>
+<li><strong>Opc integrity validation:</strong> 61</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">43</td>
+<td class="date-time">2032-06-18 11:49:22 AM</td>
+<td>Sys status identifier</td>
+<td>Format sys status</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Sys</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Platform family:</strong> A350</li>
+<li><strong>Air frame ident:</strong> A350</li>
+<li><strong>FMS node physical position:</strong> Center</li>
+<li><strong>Engine ident:</strong> Trent</li>
+<li><strong>Engine manufact:</strong> 2</li>
+<li><strong>Opsys pn:</strong> Hnp5dxcl01xea01</li>
+<li><strong>Ndb pn:</strong> Abv2601l01</li>
+<li><strong>Ami database pn:</strong> Hnp40</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xcd03fido1</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xed03xh004</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp56xcd06xha08</li>
+<li><strong>Hardware pn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Hardware sn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Tail number:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Cpdb pn:</strong> Not loaded</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">44</td>
+<td class="date-time">2032-06-18 11:50:37 AM</td>
+<td>Operational startup mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational startup mode:</strong> Operational startup cold</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">45</td>
+<td class="date-time">2032-06-18 11:50:37 AM</td>
+<td>Dual mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational dual mode:</strong> Operational dual mode Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">46</td>
+<td class="date-time">2032-06-18 11:50:37 AM</td>
+<td>Operational powerup identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational powerup:</strong> Operational powerup normal</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">47</td>
+<td class="date-time">2032-06-18 11:50:44 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Standby</td>
+<td>Master</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">48</td>
+<td class="date-time">2032-06-18 11:50:55 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">49</td>
+<td class="date-time">2032-06-18 11:50:57 AM</td>
+<td>Opc configuration data identifier</td>
+<td>Format opc configuration data</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Configuration data</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Performance custo 3:</strong> False</li>
+<li><strong>Performance custo 2:</strong> False</li>
+<li><strong>Performance custo 1:</strong> False</li>
+<li><strong>Operational data link datalink:</strong> True</li>
+<li><strong>Air traffic service enable:</strong> True</li>
+<li><strong>Kilogram enable:</strong> True</li>
+<li><strong>Metric enable:</strong> True</li>
+<li><strong>Operate use:</strong> 0</li>
+<li><strong>Display trajectory:</strong> 1</li>
+<li><strong>Grid mora enable:</strong> True</li>
+<li><strong>Connectivity func enable:</strong> 0</li>
+<li><strong>I4d rta enable:</strong> False</li>
+<li><strong>Radio navigation 2 installed:</strong> True</li>
+<li><strong>Aim disable:</strong> True</li>
+<li><strong>No radio navigation on board:</strong> False</li>
+<li><strong>Passenger count enable:</strong> True</li>
+<li><strong>Fls enable:</strong> True</li>
+<li><strong>To securization enable:</strong> True</li>
+<li><strong>No ap fd mda mdh disconnect:</strong> True</li>
+<li><strong>To derate enable:</strong> True</li>
+<li><strong>Climb derate enable:</strong> False</li>
+<li><strong>Fnl des enable:</strong> True</li>
+<li><strong>Cda enable:</strong> 1</li>
+<li><strong>Cpdb opc enable:</strong> False</li>
+<li><strong>Vor2 dme2 on board:</strong> True</li>
+<li><strong>Rnp function enable:</strong> True</li>
+<li><strong>Leg sequencing monitoring enable:</strong> True</li>
+<li><strong>Resync check enable:</strong> True</li>
+<li><strong>To securization 2 enable:</strong> True</li>
+<li><strong>Sbas enable:</strong> True</li>
+<li><strong>Sls enable:</strong> True</li>
+<li><strong>Jfgw display on mfd enable:</strong> True</li>
+<li><strong>Acr 2 on board:</strong> False</li>
+<li><strong>Vertical display enable:</strong> True</li>
+<li><strong>FMS trjctry on vd enable:</strong> True</li>
+<li><strong>Mora on vd enable:</strong> True</li>
+<li><strong>Msa on vd enable:</strong> True</li>
+<li><strong>Etoc enable:</strong> True</li>
+<li><strong>Freeze scale on vd enable:</strong> False</li>
+<li><strong>Fls axis on vd enable:</strong> True</li>
+<li><strong>Aess twsf trjctry enable:</strong> True</li>
+<li><strong>Auto derate climb enable:</strong> True</li>
+<li><strong>Polar navigation enabled:</strong> True</li>
+<li><strong>Back beam approach en:</strong> True</li>
+<li><strong>FMS platform type 1:</strong> True</li>
+<li><strong>FMS platform type 2:</strong> True</li>
+<li><strong>FMS platform type 3:</strong> False</li>
+<li><strong>FMS platform type 4:</strong> False</li>
+<li><strong>FMS engine manuf 1:</strong> False</li>
+<li><strong>FMS engine manuf 2:</strong> True</li>
+<li><strong>FMS engine manuf 3:</strong> False</li>
+<li><strong>FMS engine type 1:</strong> False</li>
+<li><strong>FMS engine type 2:</strong> True</li>
+<li><strong>FMS engine type 3:</strong> False</li>
+<li><strong>FMS engine type 4:</strong> False</li>
+<li><strong>FMS engine type 5:</strong> False</li>
+<li><strong>Takeoff rnp:</strong> 1.000000</li>
+<li><strong>Gps approach rnp:</strong> 0.300000</li>
+<li><strong>Precision approach rnp:</strong> 0.500000</li>
+<li><strong>Nonprecision approach rnp:</strong> 0.500000</li>
+<li><strong>Terminal rnp:</strong> 1.000000</li>
+<li><strong>Enroute rnp:</strong> 2.000000</li>
+<li><strong>Oceanic rnp:</strong> 2.000000</li>
+<li><strong>Takeoff tla:</strong> 110.991997</li>
+<li><strong>Takeoff hal:</strong> 1.000000</li>
+<li><strong>Approach hal:</strong> 0.300000</li>
+<li><strong>Terminal hal:</strong> 1.000000</li>
+<li><strong>Enroute hal:</strong> 2.000000</li>
+<li><strong>Oceanic hal:</strong> 2.000000</li>
+<li><strong>Tail number 32:</strong> .F-Wzht</li>
+<li><strong>Tail number 16:</strong> Zht</li>
+<li><strong>Tail number 8:</strong> T</li>
+<li><strong>Max gw:</strong> 0.000000</li>
+<li><strong>Max zfw:</strong> 0.000000</li>
+<li><strong>Configuration data version:</strong> [Redacted Payload]</li>
+<li><strong>Opc integrity validation:</strong> 61</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">50</td>
+<td class="date-time">2032-06-18 11:50:58 AM</td>
+<td>Sys status identifier</td>
+<td>Format sys status</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Sys</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Platform family:</strong> A350</li>
+<li><strong>Air frame ident:</strong> A350</li>
+<li><strong>FMS node physical position:</strong> Center</li>
+<li><strong>Engine ident:</strong> Trent</li>
+<li><strong>Engine manufact:</strong> 2</li>
+<li><strong>Opsys pn:</strong> Hnp5dxcl01xea01</li>
+<li><strong>Ndb pn:</strong> Abv2601l01</li>
+<li><strong>Ami database pn:</strong> Hnp40</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xcd03fido1</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xed03xh004</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp56xcd06xha08</li>
+<li><strong>Hardware pn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Hardware sn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Tail number:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Cpdb pn:</strong> Not loaded</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">51</td>
+<td class="date-time">2032-06-18 11:55:50 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Standby</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">52</td>
+<td class="date-time">2032-06-18 11:56:00 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Standby</td>
+<td>Master</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">53</td>
+<td class="date-time">2032-06-18 11:58:57 AM</td>
+<td>Operational startup mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational startup mode:</strong> Operational startup cold</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">54</td>
+<td class="date-time">2032-06-18 11:58:57 AM</td>
+<td>Dual mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational dual mode:</strong> Operational dual mode Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">55</td>
+<td class="date-time">2032-06-18 11:58:57 AM</td>
+<td>Operational powerup identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational powerup:</strong> Operational powerup normal</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">56</td>
+<td class="date-time">2032-06-18 11:58:59 AM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Please wait</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">57</td>
+<td class="date-time">2032-06-18 11:58:59 AM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Please wait</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">58</td>
+<td class="date-time">2032-06-18 11:59:02 AM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">59</td>
+<td class="date-time">2032-06-18 12:00:19 PM</td>
+<td>Operational startup mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational startup mode:</strong> Operational startup cold</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">60</td>
+<td class="date-time">2032-06-18 12:00:19 PM</td>
+<td>Operational powerup identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational powerup:</strong> Operational powerup normal</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">61</td>
+<td class="date-time">2032-06-18 12:00:23 PM</td>
+<td>Data link comm master identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Data link comm master status log:</strong> Data link comm slave to master</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">62</td>
+<td class="date-time">2032-06-18 12:00:24 PM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">63</td>
+<td class="date-time">2032-06-18 12:00:27 PM</td>
+<td>Dual mode identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational dual mode:</strong> Operational dual mode Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">64</td>
+<td class="date-time">2032-06-18 12:00:32 PM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">65</td>
+<td class="date-time">2032-06-18 12:00:33 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">66</td>
+<td class="date-time">2032-06-18 12:00:33 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">67</td>
+<td class="date-time">2032-06-18 12:00:38 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">68</td>
+<td class="date-time">2032-06-18 12:00:38 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">69</td>
+<td class="date-time">2032-06-18 12:00:39 PM</td>
+<td>Opc configuration data identifier</td>
+<td>Format opc configuration data</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Configuration data</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Performance custo 3:</strong> False</li>
+<li><strong>Performance custo 2:</strong> False</li>
+<li><strong>Performance custo 1:</strong> False</li>
+<li><strong>Operational data link datalink:</strong> True</li>
+<li><strong>Air traffic service enable:</strong> True</li>
+<li><strong>Kilogram enable:</strong> True</li>
+<li><strong>Metric enable:</strong> True</li>
+<li><strong>Operate use:</strong> 0</li>
+<li><strong>Display trajectory:</strong> 1</li>
+<li><strong>Grid mora enable:</strong> True</li>
+<li><strong>Connectivity func enable:</strong> 0</li>
+<li><strong>I4d rta enable:</strong> False</li>
+<li><strong>Radio navigation 2 installed:</strong> True</li>
+<li><strong>Aim disable:</strong> True</li>
+<li><strong>No radio navigation on board:</strong> False</li>
+<li><strong>Passenger count enable:</strong> True</li>
+<li><strong>Fls enable:</strong> True</li>
+<li><strong>To securization enable:</strong> True</li>
+<li><strong>No ap fd mda mdh disconnect:</strong> True</li>
+<li><strong>To derate enable:</strong> True</li>
+<li><strong>Climb derate enable:</strong> False</li>
+<li><strong>Fnl des enable:</strong> True</li>
+<li><strong>Cda enable:</strong> 1</li>
+<li><strong>Cpdb opc enable:</strong> False</li>
+<li><strong>Vor2 dme2 on board:</strong> True</li>
+<li><strong>Rnp function enable:</strong> True</li>
+<li><strong>Leg sequencing monitoring enable:</strong> True</li>
+<li><strong>Resync check enable:</strong> True</li>
+<li><strong>To securization 2 enable:</strong> True</li>
+<li><strong>Sbas enable:</strong> True</li>
+<li><strong>Sls enable:</strong> True</li>
+<li><strong>Jfgw display on mfd enable:</strong> True</li>
+<li><strong>Acr 2 on board:</strong> False</li>
+<li><strong>Vertical display enable:</strong> True</li>
+<li><strong>FMS trjctry on vd enable:</strong> True</li>
+<li><strong>Mora on vd enable:</strong> True</li>
+<li><strong>Msa on vd enable:</strong> True</li>
+<li><strong>Etoc enable:</strong> True</li>
+<li><strong>Freeze scale on vd enable:</strong> False</li>
+<li><strong>Fls axis on vd enable:</strong> True</li>
+<li><strong>Aess twsf trjctry enable:</strong> True</li>
+<li><strong>Auto derate climb enable:</strong> True</li>
+<li><strong>Polar navigation enabled:</strong> True</li>
+<li><strong>Back beam approach en:</strong> True</li>
+<li><strong>FMS platform type 1:</strong> True</li>
+<li><strong>FMS platform type 2:</strong> True</li>
+<li><strong>FMS platform type 3:</strong> False</li>
+<li><strong>FMS platform type 4:</strong> False</li>
+<li><strong>FMS engine manuf 1:</strong> False</li>
+<li><strong>FMS engine manuf 2:</strong> True</li>
+<li><strong>FMS engine manuf 3:</strong> False</li>
+<li><strong>FMS engine type 1:</strong> False</li>
+<li><strong>FMS engine type 2:</strong> True</li>
+<li><strong>FMS engine type 3:</strong> False</li>
+<li><strong>FMS engine type 4:</strong> False</li>
+<li><strong>FMS engine type 5:</strong> False</li>
+<li><strong>Takeoff rnp:</strong> 1.000000</li>
+<li><strong>Gps approach rnp:</strong> 0.300000</li>
+<li><strong>Precision approach rnp:</strong> 0.500000</li>
+<li><strong>Nonprecision approach rnp:</strong> 0.500000</li>
+<li><strong>Terminal rnp:</strong> 1.000000</li>
+<li><strong>Enroute rnp:</strong> 2.000000</li>
+<li><strong>Oceanic rnp:</strong> 2.000000</li>
+<li><strong>Takeoff tla:</strong> 110.991997</li>
+<li><strong>Takeoff hal:</strong> 1.000000</li>
+<li><strong>Approach hal:</strong> 0.300000</li>
+<li><strong>Terminal hal:</strong> 1.000000</li>
+<li><strong>Enroute hal:</strong> 2.000000</li>
+<li><strong>Oceanic hal:</strong> 2.000000</li>
+<li><strong>Tail number 32:</strong> .F-Wzht</li>
+<li><strong>Tail number 16:</strong> Zht</li>
+<li><strong>Tail number 8:</strong> T</li>
+<li><strong>Max gw:</strong> 0.000000</li>
+<li><strong>Max zfw:</strong> 0.000000</li>
+<li><strong>Configuration data version:</strong> [Redacted Payload]</li>
+<li><strong>Opc integrity validation:</strong> 61</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">70</td>
+<td class="date-time">2032-06-18 12:00:39 PM</td>
+<td>Sys status identifier</td>
+<td>Format sys status</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Sys</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Platform family:</strong> A350</li>
+<li><strong>Air frame ident:</strong> A350</li>
+<li><strong>FMS node physical position:</strong> Center</li>
+<li><strong>Engine ident:</strong> Trent</li>
+<li><strong>Engine manufact:</strong> 2</li>
+<li><strong>Opsys pn:</strong> Hnp5dxcl01xea01</li>
+<li><strong>Ndb pn:</strong> Abv2601l01</li>
+<li><strong>Ami database pn:</strong> Hnp40</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xcd03fido1</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xed03xh004</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp56xcd06xha08</li>
+<li><strong>Hardware pn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Hardware sn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Tail number:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Cpdb pn:</strong> Not loaded</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">71</td>
+<td class="date-time">2032-06-18 12:00:59 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Please wait</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">72</td>
+<td class="date-time">2032-06-18 12:00:59 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Invalid</td>
+<td>Master</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Please wait</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">1</td>
+<td class="date-time">2032-06-18 12:15:43 PM</td>
+<td>Operational startup mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational startup mode:</strong> Operational startup cold</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">2</td>
+<td class="date-time">2032-06-18 12:15:43 PM</td>
+<td>Dual mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational dual mode:</strong> Operational dual mode Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">3</td>
+<td class="date-time">2032-06-18 12:15:43 PM</td>
+<td>Operational powerup identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational powerup:</strong> Operational powerup normal</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">4</td>
+<td class="date-time">2032-06-18 12:15:48 PM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">5</td>
+<td class="date-time">2032-06-18 12:16:03 PM</td>
+<td>Opc configuration data identifier</td>
+<td>Format opc configuration data</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Configuration data</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Performance custo 3:</strong> False</li>
+<li><strong>Performance custo 2:</strong> False</li>
+<li><strong>Performance custo 1:</strong> False</li>
+<li><strong>Operational data link datalink:</strong> True</li>
+<li><strong>Air traffic service enable:</strong> True</li>
+<li><strong>Kilogram enable:</strong> True</li>
+<li><strong>Metric enable:</strong> True</li>
+<li><strong>Operate use:</strong> 0</li>
+<li><strong>Display trajectory:</strong> 1</li>
+<li><strong>Grid mora enable:</strong> True</li>
+<li><strong>Connectivity func enable:</strong> 0</li>
+<li><strong>I4d rta enable:</strong> False</li>
+<li><strong>Radio navigation 2 installed:</strong> True</li>
+<li><strong>Aim disable:</strong> True</li>
+<li><strong>No radio navigation on board:</strong> False</li>
+<li><strong>Passenger count enable:</strong> True</li>
+<li><strong>Fls enable:</strong> True</li>
+<li><strong>To securization enable:</strong> True</li>
+<li><strong>No ap fd mda mdh disconnect:</strong> True</li>
+<li><strong>To derate enable:</strong> True</li>
+<li><strong>Climb derate enable:</strong> False</li>
+<li><strong>Fnl des enable:</strong> True</li>
+<li><strong>Cda enable:</strong> 1</li>
+<li><strong>Cpdb opc enable:</strong> False</li>
+<li><strong>Vor2 dme2 on board:</strong> True</li>
+<li><strong>Rnp function enable:</strong> True</li>
+<li><strong>Leg sequencing monitoring enable:</strong> True</li>
+<li><strong>Resync check enable:</strong> True</li>
+<li><strong>To securization 2 enable:</strong> True</li>
+<li><strong>Sbas enable:</strong> True</li>
+<li><strong>Sls enable:</strong> True</li>
+<li><strong>Jfgw display on mfd enable:</strong> True</li>
+<li><strong>Acr 2 on board:</strong> False</li>
+<li><strong>Vertical display enable:</strong> True</li>
+<li><strong>FMS trjctry on vd enable:</strong> True</li>
+<li><strong>Mora on vd enable:</strong> True</li>
+<li><strong>Msa on vd enable:</strong> True</li>
+<li><strong>Etoc enable:</strong> True</li>
+<li><strong>Freeze scale on vd enable:</strong> False</li>
+<li><strong>Fls axis on vd enable:</strong> True</li>
+<li><strong>Aess twsf trjctry enable:</strong> True</li>
+<li><strong>Auto derate climb enable:</strong> True</li>
+<li><strong>Polar navigation enabled:</strong> True</li>
+<li><strong>Back beam approach en:</strong> True</li>
+<li><strong>FMS platform type 1:</strong> True</li>
+<li><strong>FMS platform type 2:</strong> True</li>
+<li><strong>FMS platform type 3:</strong> False</li>
+<li><strong>FMS platform type 4:</strong> False</li>
+<li><strong>FMS engine manuf 1:</strong> False</li>
+<li><strong>FMS engine manuf 2:</strong> True</li>
+<li><strong>FMS engine manuf 3:</strong> False</li>
+<li><strong>FMS engine type 1:</strong> False</li>
+<li><strong>FMS engine type 2:</strong> True</li>
+<li><strong>FMS engine type 3:</strong> False</li>
+<li><strong>FMS engine type 4:</strong> False</li>
+<li><strong>FMS engine type 5:</strong> False</li>
+<li><strong>Takeoff rnp:</strong> 1.000000</li>
+<li><strong>Gps approach rnp:</strong> 0.300000</li>
+<li><strong>Precision approach rnp:</strong> 0.500000</li>
+<li><strong>Nonprecision approach rnp:</strong> 0.500000</li>
+<li><strong>Terminal rnp:</strong> 1.000000</li>
+<li><strong>Enroute rnp:</strong> 2.000000</li>
+<li><strong>Oceanic rnp:</strong> 2.000000</li>
+<li><strong>Takeoff tla:</strong> 110.991997</li>
+<li><strong>Takeoff hal:</strong> 1.000000</li>
+<li><strong>Approach hal:</strong> 0.300000</li>
+<li><strong>Terminal hal:</strong> 1.000000</li>
+<li><strong>Enroute hal:</strong> 2.000000</li>
+<li><strong>Oceanic hal:</strong> 2.000000</li>
+<li><strong>Tail number 32:</strong> .F-Wzht</li>
+<li><strong>Tail number 16:</strong> Zht</li>
+<li><strong>Tail number 8:</strong> T</li>
+<li><strong>Max gw:</strong> 0.000000</li>
+<li><strong>Max zfw:</strong> 0.000000</li>
+<li><strong>Configuration data version:</strong> [Redacted Payload]</li>
+<li><strong>Opc integrity validation:</strong> 61</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">6</td>
+<td class="date-time">2032-06-18 12:16:03 PM</td>
+<td>Sys status identifier</td>
+<td>Format sys status</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Sys</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Platform family:</strong> A350</li>
+<li><strong>Air frame ident:</strong> A350</li>
+<li><strong>FMS node physical position:</strong> Center</li>
+<li><strong>Engine ident:</strong> Trent</li>
+<li><strong>Engine manufact:</strong> 2</li>
+<li><strong>Opsys pn:</strong> Hnp5dxcl01xea01</li>
+<li><strong>Ndb pn:</strong> Abv2601l01</li>
+<li><strong>Ami database pn:</strong> Hnp40</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xcd03fido1</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xed03xh004</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp56xcd06xha08</li>
+<li><strong>Hardware pn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Hardware sn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Tail number:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Cpdb pn:</strong> Not loaded</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">7</td>
+<td class="date-time">2032-06-18 12:16:59 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">8</td>
+<td class="date-time">2032-06-18 12:16:59 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">9</td>
+<td class="date-time">2032-06-18 12:17:00 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">10</td>
+<td class="date-time">2032-06-18 12:17:00 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Standby</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">11</td>
+<td class="date-time">2032-06-18 12:18:58 PM</td>
+<td>Operational startup mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational startup mode:</strong> Operational startup cold</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">12</td>
+<td class="date-time">2032-06-18 12:18:58 PM</td>
+<td>Dual mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational dual mode:</strong> Operational dual mode Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">13</td>
+<td class="date-time">2032-06-18 12:18:58 PM</td>
+<td>Operational powerup identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational powerup:</strong> Operational powerup normal</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">14</td>
+<td class="date-time">2032-06-18 12:19:01 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Please wait</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">15</td>
+<td class="date-time">2032-06-18 12:19:01 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Please wait</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">16</td>
+<td class="date-time">2032-06-18 12:19:04 PM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Single</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">17</td>
+<td class="date-time">2032-06-18 12:20:18 PM</td>
+<td>Operational startup mode identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational startup mode:</strong> Operational startup cold</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">18</td>
+<td class="date-time">2032-06-18 12:20:18 PM</td>
+<td>Operational powerup identifier</td>
+<td>Format fixed str</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational powerup:</strong> Operational powerup normal</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">19</td>
+<td class="date-time">2032-06-18 12:20:25 PM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">20</td>
+<td class="date-time">2032-06-18 12:20:38 PM</td>
+<td>Opc configuration data identifier</td>
+<td>Format opc configuration data</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Configuration data</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Performance custo 3:</strong> False</li>
+<li><strong>Performance custo 2:</strong> False</li>
+<li><strong>Performance custo 1:</strong> False</li>
+<li><strong>Operational data link datalink:</strong> True</li>
+<li><strong>Air traffic service enable:</strong> True</li>
+<li><strong>Kilogram enable:</strong> True</li>
+<li><strong>Metric enable:</strong> True</li>
+<li><strong>Operate use:</strong> 0</li>
+<li><strong>Display trajectory:</strong> 1</li>
+<li><strong>Grid mora enable:</strong> True</li>
+<li><strong>Connectivity func enable:</strong> 0</li>
+<li><strong>I4d rta enable:</strong> False</li>
+<li><strong>Radio navigation 2 installed:</strong> True</li>
+<li><strong>Aim disable:</strong> True</li>
+<li><strong>No radio navigation on board:</strong> False</li>
+<li><strong>Passenger count enable:</strong> True</li>
+<li><strong>Fls enable:</strong> True</li>
+<li><strong>To securization enable:</strong> True</li>
+<li><strong>No ap fd mda mdh disconnect:</strong> True</li>
+<li><strong>To derate enable:</strong> True</li>
+<li><strong>Climb derate enable:</strong> False</li>
+<li><strong>Fnl des enable:</strong> True</li>
+<li><strong>Cda enable:</strong> 1</li>
+<li><strong>Cpdb opc enable:</strong> False</li>
+<li><strong>Vor2 dme2 on board:</strong> True</li>
+<li><strong>Rnp function enable:</strong> True</li>
+<li><strong>Leg sequencing monitoring enable:</strong> True</li>
+<li><strong>Resync check enable:</strong> True</li>
+<li><strong>To securization 2 enable:</strong> True</li>
+<li><strong>Sbas enable:</strong> True</li>
+<li><strong>Sls enable:</strong> True</li>
+<li><strong>Jfgw display on mfd enable:</strong> True</li>
+<li><strong>Acr 2 on board:</strong> False</li>
+<li><strong>Vertical display enable:</strong> True</li>
+<li><strong>FMS trjctry on vd enable:</strong> True</li>
+<li><strong>Mora on vd enable:</strong> True</li>
+<li><strong>Msa on vd enable:</strong> True</li>
+<li><strong>Etoc enable:</strong> True</li>
+<li><strong>Freeze scale on vd enable:</strong> False</li>
+<li><strong>Fls axis on vd enable:</strong> True</li>
+<li><strong>Aess twsf trjctry enable:</strong> True</li>
+<li><strong>Auto derate climb enable:</strong> True</li>
+<li><strong>Polar navigation enabled:</strong> True</li>
+<li><strong>Back beam approach en:</strong> True</li>
+<li><strong>FMS platform type 1:</strong> True</li>
+<li><strong>FMS platform type 2:</strong> True</li>
+<li><strong>FMS platform type 3:</strong> False</li>
+<li><strong>FMS platform type 4:</strong> False</li>
+<li><strong>FMS engine manuf 1:</strong> False</li>
+<li><strong>FMS engine manuf 2:</strong> True</li>
+<li><strong>FMS engine manuf 3:</strong> False</li>
+<li><strong>FMS engine type 1:</strong> False</li>
+<li><strong>FMS engine type 2:</strong> True</li>
+<li><strong>FMS engine type 3:</strong> False</li>
+<li><strong>FMS engine type 4:</strong> False</li>
+<li><strong>FMS engine type 5:</strong> False</li>
+<li><strong>Takeoff rnp:</strong> 1.000000</li>
+<li><strong>Gps approach rnp:</strong> 0.300000</li>
+<li><strong>Precision approach rnp:</strong> 0.500000</li>
+<li><strong>Nonprecision approach rnp:</strong> 0.500000</li>
+<li><strong>Terminal rnp:</strong> 1.000000</li>
+<li><strong>Enroute rnp:</strong> 2.000000</li>
+<li><strong>Oceanic rnp:</strong> 2.000000</li>
+<li><strong>Takeoff tla:</strong> 110.991997</li>
+<li><strong>Takeoff hal:</strong> 1.000000</li>
+<li><strong>Approach hal:</strong> 0.300000</li>
+<li><strong>Terminal hal:</strong> 1.000000</li>
+<li><strong>Enroute hal:</strong> 2.000000</li>
+<li><strong>Oceanic hal:</strong> 2.000000</li>
+<li><strong>Tail number 32:</strong> .F-Wzht</li>
+<li><strong>Tail number 16:</strong> Zht</li>
+<li><strong>Tail number 8:</strong> T</li>
+<li><strong>Max gw:</strong> 0.000000</li>
+<li><strong>Max zfw:</strong> 0.000000</li>
+<li><strong>Configuration data version:</strong> [Redacted Payload]</li>
+<li><strong>Opc integrity validation:</strong> 61</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">21</td>
+<td class="date-time">2032-06-18 12:20:39 PM</td>
+<td>Sys status identifier</td>
+<td>Format sys status</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Identifier:</strong> Sys</li>
+<li><strong>Last day logged:</strong> 0</li>
+<li><strong>Platform family:</strong> A350</li>
+<li><strong>Air frame ident:</strong> A350</li>
+<li><strong>FMS node physical position:</strong> Center</li>
+<li><strong>Engine ident:</strong> Trent</li>
+<li><strong>Engine manufact:</strong> 2</li>
+<li><strong>Opsys pn:</strong> Hnp5dxcl01xea01</li>
+<li><strong>Ndb pn:</strong> Abv2601l01</li>
+<li><strong>Ami database pn:</strong> Hnp40</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xcd03fido1</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp28xed03xh004</li>
+<li><strong>Database Reference: [Removed]</strong> Hnp56xcd06xha08</li>
+<li><strong>Hardware pn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Hardware sn:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Tail number:</strong> <span class="na-data">Not applicable</span></li>
+<li><strong>Cpdb pn:</strong> Not loaded</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">22</td>
+<td class="date-time">2032-06-18 12:21:11 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction process Computed flight plan Request</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">23</td>
+<td class="date-time">2032-06-18 12:21:12 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction send operational data link flight plan request</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">24</td>
+<td class="date-time">2032-06-18 12:21:13 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Air traffic control inserted in sec3</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">25</td>
+<td class="date-time">2032-06-18 12:21:13 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Air traffic control inserted in sec3</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">26</td>
+<td class="date-time">2032-06-18 12:21:13 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert operational data link flight plan uplink</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">27</td>
+<td class="date-time">2032-06-18 12:21:13 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Cpny insert in prog</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">28</td>
+<td class="date-time">2032-06-18 12:21:13 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Cpny insert in prog</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">29</td>
+<td class="date-time">2032-06-18 12:21:13 PM</td>
+<td>Lnav identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>L navigation status:</strong> L navigation path</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">30</td>
+<td class="date-time">2032-06-18 12:22:32 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter zfw</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">31</td>
+<td class="date-time">2032-06-18 12:22:32 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Lrc mode in use</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">32</td>
+<td class="date-time">2032-06-18 12:22:32 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Lrc mode in use</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">33</td>
+<td class="date-time">2032-06-18 12:22:35 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter zfwcg</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">34</td>
+<td class="date-time">2032-06-18 12:22:37 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter block</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">35</td>
+<td class="date-time">2032-06-18 12:26:22 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter crz fl</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">36</td>
+<td class="date-time">2032-06-18 12:26:27 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction select flt criterion</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">37</td>
+<td class="date-time">2032-06-18 12:26:30 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter cost index</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">38</td>
+<td class="date-time">2032-06-18 12:27:21 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter vapp</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">39</td>
+<td class="date-time">2032-06-18 12:27:22 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter vapp</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">40</td>
+<td class="date-time">2032-06-18 12:27:22 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter vapp</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">41</td>
+<td class="date-time">2032-06-18 12:28:33 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter to v1 speed</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">42</td>
+<td class="date-time">2032-06-18 12:28:35 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter to vr speed</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">43</td>
+<td class="date-time">2032-06-18 12:28:38 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter to v2 speed</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">44</td>
+<td class="date-time">2032-06-18 12:28:42 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter to flaps</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">45</td>
+<td class="date-time">2032-06-18 12:28:43 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter to flaps</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">46</td>
+<td class="date-time">2032-06-18 12:28:43 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter to flaps</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">47</td>
+<td class="date-time">2032-06-18 12:28:44 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Sls manual tuning not allowed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">48</td>
+<td class="date-time">2032-06-18 12:28:44 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Sls manual tuning not allowed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">49</td>
+<td class="date-time">2032-06-18 12:30:04 PM</td>
+<td>Engines off identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Engine status log:</strong> At least one engine is on</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">50</td>
+<td class="date-time">2032-06-18 12:30:06 PM</td>
+<td>Global inhibit identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Operational inhibit state:</strong> Operational uninhibit to inhbit</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">51</td>
+<td class="date-time">2032-06-18 12:30:23 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter to ths</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">52</td>
+<td class="date-time">2032-06-18 12:30:27 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 141.945145</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">53</td>
+<td class="date-time">2032-06-18 12:32:06 PM</td>
+<td>Flight phase identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Flight phase previous:</strong> Preflight</li>
+<li><strong>Flight phase current:</strong> Takeoff</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">54</td>
+<td class="date-time">2032-06-18 12:32:09 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 150.000000</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">55</td>
+<td class="date-time">2032-06-18 12:32:20 PM</td>
+<td>Flight display cp identifier</td>
+<td>Format flight display cp</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Scale:</strong> 20.000000</li>
+<li><strong>Mode:</strong> Arc</li>
+<li><strong>Airports:</strong> 0</li>
+<li><strong>Route data:</strong> 1</li>
+<li><strong>Waypoints:</strong> 0</li>
+<li><strong>Ndbs:</strong> 0</li>
+<li><strong>Cust wpts:</strong> 0</li>
+<li><strong>Navaids:</strong> 0</li>
+<li><strong>Mora:</strong> 1</li>
+<li><strong>Ls:</strong> 0</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">56</td>
+<td class="date-time">2032-06-18 12:32:28 PM</td>
+<td>Flight display cp identifier</td>
+<td>Format flight display cp</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Scale:</strong> 20.000000</li>
+<li><strong>Mode:</strong> Arc</li>
+<li><strong>Airports:</strong> 0</li>
+<li><strong>Route data:</strong> 1</li>
+<li><strong>Waypoints:</strong> 0</li>
+<li><strong>Ndbs:</strong> 0</li>
+<li><strong>Cust wpts:</strong> 0</li>
+<li><strong>Navaids:</strong> 0</li>
+<li><strong>Mora:</strong> 1</li>
+<li><strong>Ls:</strong> 1</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">57</td>
+<td class="date-time">2032-06-18 12:32:39 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 49.585045</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">58</td>
+<td class="date-time">2032-06-18 12:32:45 PM</td>
+<td>Air ground identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.031971</td>
+<td>8.553883</td>
+<td>331.408905</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Air ground status:</strong> 50</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">59</td>
+<td class="date-time">2032-06-18 12:32:45 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.032028</td>
+<td>8.554142</td>
+<td>332.398529</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Ppos To De07r</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">60</td>
+<td class="date-time">2032-06-18 12:32:45 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;02&gt; Df</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">61</td>
+<td class="date-time">2032-06-18 12:32:50 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 161.343185</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">62</td>
+<td class="date-time">2032-06-18 12:32:53 PM</td>
+<td>Autopilot identifier a350</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Autopilot data:</strong> Auto pilot 1 is on</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">63</td>
+<td class="date-time">2032-06-18 12:32:56 PM</td>
+<td>Nose gear identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Main gear out:</strong> Nose gear is up</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">64</td>
+<td class="date-time">2032-06-18 12:33:02 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 165.800598</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">65</td>
+<td class="date-time">2032-06-18 12:33:12 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 169.726425</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">66</td>
+<td class="date-time">2032-06-18 12:33:15 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.039490</td>
+<td>8.588097</td>
+<td>1582.496948</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: De07r To Df149</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">67</td>
+<td class="date-time">2032-06-18 12:33:15 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;01&gt; Cf</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">68</td>
+<td class="date-time">2032-06-18 12:33:22 PM</td>
+<td>Flight phase identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.041485</td>
+<td>8.596100</td>
+<td>1902.385498</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Flight phase previous:</strong> Takeoff</li>
+<li><strong>Flight phase current:</strong> Climb</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">69</td>
+<td class="date-time">2032-06-18 12:33:22 PM</td>
+<td>Vnav at mode identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>V navigation status:</strong> V navigation at speed thrust</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">70</td>
+<td class="date-time">2032-06-18 12:34:08 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 216.671967</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">71</td>
+<td class="date-time">2032-06-18 12:34:14 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 219.072540</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">72</td>
+<td class="date-time">2032-06-18 12:34:44 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.074875</td>
+<td>8.710439</td>
+<td>4251.461914</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Df149 To Mefto</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">73</td>
+<td class="date-time">2032-06-18 12:34:44 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;10&gt; Tf</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">74</td>
+<td class="date-time">2032-06-18 12:35:14 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 248.602615</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">75</td>
+<td class="date-time">2032-06-18 12:35:20 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 250.982788</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">76</td>
+<td class="date-time">2032-06-18 12:36:35 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.201458</td>
+<td>8.797826</td>
+<td>8182.999512</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter crz fl</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">77</td>
+<td class="date-time">2032-06-18 12:36:36 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter crz fl</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">78</td>
+<td class="date-time">2032-06-18 12:36:37 PM</td>
+<td>Selection altitude identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selected altitude data:</strong> 15000.000000</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">79</td>
+<td class="date-time">2032-06-18 12:37:30 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.269718</td>
+<td>8.817266</td>
+<td>10288.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Mefto To Odaga</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">80</td>
+<td class="date-time">2032-06-18 12:37:30 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;10&gt; Tf</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">81</td>
+<td class="date-time">2032-06-18 12:37:39 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 258.658539</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">82</td>
+<td class="date-time">2032-06-18 12:37:45 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 263.847534</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">83</td>
+<td class="date-time">2032-06-18 12:37:51 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 268.863861</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">84</td>
+<td class="date-time">2032-06-18 12:37:58 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 274.776581</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">85</td>
+<td class="date-time">2032-06-18 12:38:04 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 280.405304</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">86</td>
+<td class="date-time">2032-06-18 12:38:10 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 285.782623</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">87</td>
+<td class="date-time">2032-06-18 12:38:16 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 291.003448</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">88</td>
+<td class="date-time">2032-06-18 12:38:22 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 296.090271</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">89</td>
+<td class="date-time">2032-06-18 12:38:28 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 299.878143</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">90</td>
+<td class="date-time">2032-06-18 12:39:02 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.326931</td>
+<td>8.616507</td>
+<td>12303.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Odaga To Kusom</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">91</td>
+<td class="date-time">2032-06-18 12:39:02 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;10&gt; Tf</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">92</td>
+<td class="date-time">2032-06-18 12:40:06 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.362335</td>
+<td>8.455096</td>
+<td>14513.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction refresh sec index data</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">93</td>
+<td class="date-time">2032-06-18 12:40:06 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction refresh sec index data</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">94</td>
+<td class="date-time">2032-06-18 12:40:07 PM</td>
+<td>Vnav at mode identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>V navigation status:</strong> V navigation at none</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">95</td>
+<td class="date-time">2032-06-18 12:40:10 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction refresh sec index data</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">96</td>
+<td class="date-time">2032-06-18 12:40:11 PM</td>
+<td>Flight phase identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.364834</td>
+<td>8.443503</td>
+<td>14657.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Flight phase previous:</strong> Climb</li>
+<li><strong>Flight phase current:</strong> Cruise</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">97</td>
+<td class="date-time">2032-06-18 12:40:11 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction copy flight plan</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">98</td>
+<td class="date-time">2032-06-18 12:40:11 PM</td>
+<td>Top of climb identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Top of climb status:</strong> Top of climb sequenced</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">99</td>
+<td class="date-time">2032-06-18 12:40:16 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction refresh sec index data</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">100</td>
+<td class="date-time">2032-06-18 12:40:20 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction refresh sec index data</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">101</td>
+<td class="date-time">2032-06-18 12:40:22 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 304.878815</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">102</td>
+<td class="date-time">2032-06-18 12:40:23 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction refresh sec index data</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">103</td>
+<td class="date-time">2032-06-18 12:40:30 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 311.374023</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">104</td>
+<td class="date-time">2032-06-18 12:40:36 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 316.240295</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">105</td>
+<td class="date-time">2032-06-18 12:40:41 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.377361</td>
+<td>8.361691</td>
+<td>14994.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Kusom To Gubax</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">106</td>
+<td class="date-time">2032-06-18 12:40:41 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;10&gt; Tf</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">107</td>
+<td class="date-time">2032-06-18 12:40:43 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 320.252808</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">108</td>
+<td class="date-time">2032-06-18 12:40:57 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 323.172363</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">109</td>
+<td class="date-time">2032-06-18 12:41:15 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction transfer to mailbox</li>
+<li><strong>Source fms node:</strong> First officer</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">110</td>
+<td class="date-time">2032-06-18 12:41:18 PM</td>
+<td>Data link uplink air traffic control identifier</td>
+<td>Format data link air traffic control</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.359371</td>
+<td>8.256583</td>
+<td>15001.000000</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Data link air traffic control data:</strong> 7089068234737320000</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">111</td>
+<td class="date-time">2032-06-18 12:41:25 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -3.558395</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">112</td>
+<td class="date-time">2032-06-18 12:41:43 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -3.674818</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">113</td>
+<td class="date-time">2032-06-18 12:41:47 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction refresh sec index data</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">114</td>
+<td class="date-time">2032-06-18 12:42:01 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -1.735943</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">115</td>
+<td class="date-time">2032-06-18 12:42:08 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -2.939612</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">116</td>
+<td class="date-time">2032-06-18 12:42:15 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 1.729004</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">117</td>
+<td class="date-time">2032-06-18 12:42:52 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.307457</td>
+<td>7.995921</td>
+<td>14999.998047</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 7.077657</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">118</td>
+<td class="date-time">2032-06-18 12:43:23 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.297478</td>
+<td>7.908002</td>
+<td>14997.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Gubax To Ravki</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">119</td>
+<td class="date-time">2032-06-18 12:43:23 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;10&gt; Tf</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">120</td>
+<td class="date-time">2032-06-18 12:43:30 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 12.893681</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">121</td>
+<td class="date-time">2032-06-18 12:44:09 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -6.771981</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">122</td>
+<td class="date-time">2032-06-18 12:44:16 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -2.642243</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">123</td>
+<td class="date-time">2032-06-18 12:44:54 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.368618</td>
+<td>7.670063</td>
+<td>14997.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Ravki To Ditam</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">124</td>
+<td class="date-time">2032-06-18 12:44:54 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;10&gt; Tf</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">125</td>
+<td class="date-time">2032-06-18 12:45:00 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 10.006517</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">126</td>
+<td class="date-time">2032-06-18 12:45:09 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -3.644348</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">127</td>
+<td class="date-time">2032-06-18 12:45:40 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -32.297089</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">128</td>
+<td class="date-time">2032-06-18 12:45:51 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -24.826105</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">129</td>
+<td class="date-time">2032-06-18 12:46:17 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.507298</td>
+<td>7.565318</td>
+<td>15006.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter pressure setting</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">130</td>
+<td class="date-time">2032-06-18 12:46:24 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -17.190372</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">131</td>
+<td class="date-time">2032-06-18 12:46:41 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -8.872496</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">132</td>
+<td class="date-time">2032-06-18 12:46:48 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.559994</td>
+<td>7.527259</td>
+<td>15003.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Ditam To Oboka</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">133</td>
+<td class="date-time">2032-06-18 12:46:48 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;10&gt; Tf</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">134</td>
+<td class="date-time">2032-06-18 12:46:52 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -18.824675</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">135</td>
+<td class="date-time">2032-06-18 12:47:23 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 0.486216</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">136</td>
+<td class="date-time">2032-06-18 12:47:52 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.660324</td>
+<td>7.424562</td>
+<td>14998.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -0.648497</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">137</td>
+<td class="date-time">2032-06-18 12:48:02 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 8.971651</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">138</td>
+<td class="date-time">2032-06-18 12:48:19 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 1.785288</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">139</td>
+<td class="date-time">2032-06-18 12:48:26 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction flight plan orient destination event</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">140</td>
+<td class="date-time">2032-06-18 12:48:34 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 9.674602</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">141</td>
+<td class="date-time">2032-06-18 12:48:47 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.744141</td>
+<td>7.332404</td>
+<td>14997.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Oboka To Rocuh</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">142</td>
+<td class="date-time">2032-06-18 12:48:47 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;10&gt; Tf</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">143</td>
+<td class="date-time">2032-06-18 12:49:15 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction string new destination</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">144</td>
+<td class="date-time">2032-06-18 12:49:18 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">145</td>
+<td class="date-time">2032-06-18 12:49:20 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">146</td>
+<td class="date-time">2032-06-18 12:49:27 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 14.322329</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">147</td>
+<td class="date-time">2032-06-18 12:49:37 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 15.475976</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">148</td>
+<td class="date-time">2032-06-18 12:50:01 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.808975</td>
+<td>7.140294</td>
+<td>14995.998047</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction string new destination</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">149</td>
+<td class="date-time">2032-06-18 12:50:03 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">150</td>
+<td class="date-time">2032-06-18 12:50:04 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">151</td>
+<td class="date-time">2032-06-18 12:50:04 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Enter destination data</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">152</td>
+<td class="date-time">2032-06-18 12:50:04 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Enter destination data</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">153</td>
+<td class="date-time">2032-06-18 12:50:05 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Decelerate</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">154</td>
+<td class="date-time">2032-06-18 12:50:05 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Decelerate</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">155</td>
+<td class="date-time">2032-06-18 12:50:08 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Enter destination data</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">156</td>
+<td class="date-time">2032-06-18 12:50:08 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Enter destination data</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">157</td>
+<td class="date-time">2032-06-18 12:50:19 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter approach</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">158</td>
+<td class="date-time">2032-06-18 12:50:21 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter approach</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">159</td>
+<td class="date-time">2032-06-18 12:50:27 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter approach</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">160</td>
+<td class="date-time">2032-06-18 12:50:29 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 6.008789</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">161</td>
+<td class="date-time">2032-06-18 12:50:31 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction flight plan orient destination event</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">162</td>
+<td class="date-time">2032-06-18 12:50:32 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">163</td>
+<td class="date-time">2032-06-18 12:50:33 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">164</td>
+<td class="date-time">2032-06-18 12:50:33 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">165</td>
+<td class="date-time">2032-06-18 12:50:39 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction delete discon</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">166</td>
+<td class="date-time">2032-06-18 12:50:39 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Lateral discont ahead</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">167</td>
+<td class="date-time">2032-06-18 12:50:39 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Lateral discont ahead</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">168</td>
+<td class="date-time">2032-06-18 12:50:41 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">169</td>
+<td class="date-time">2032-06-18 12:50:41 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">170</td>
+<td class="date-time">2032-06-18 12:50:41 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Enter destination data</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">171</td>
+<td class="date-time">2032-06-18 12:50:41 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Enter destination data</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">172</td>
+<td class="date-time">2032-06-18 12:50:44 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 2.262443</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">173</td>
+<td class="date-time">2032-06-18 12:50:57 PM</td>
+<td>Vnav at mode identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>V navigation status:</strong> V navigation at vss</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">174</td>
+<td class="date-time">2032-06-18 12:50:59 PM</td>
+<td>Flight phase identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.859463</td>
+<td>6.990520</td>
+<td>14997.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Flight phase previous:</strong> Cruise</li>
+<li><strong>Flight phase current:</strong> Descent</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">175</td>
+<td class="date-time">2032-06-18 12:51:00 PM</td>
+<td>Vnav at mode identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>V navigation status:</strong> V navigation at speed thrust</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">176</td>
+<td class="date-time">2032-06-18 12:51:01 PM</td>
+<td>Selection altitude identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selected altitude data:</strong> 3000.000000</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">177</td>
+<td class="date-time">2032-06-18 12:51:01 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> More drag</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">178</td>
+<td class="date-time">2032-06-18 12:51:01 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> More drag</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">179</td>
+<td class="date-time">2032-06-18 12:51:03 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Enter destination data</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">180</td>
+<td class="date-time">2032-06-18 12:51:03 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Enter destination data</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">181</td>
+<td class="date-time">2032-06-18 12:51:04 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> More drag</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">182</td>
+<td class="date-time">2032-06-18 12:51:04 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> More drag</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">183</td>
+<td class="date-time">2032-06-18 12:51:06 PM</td>
+<td>Air brakes identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Air brakes log:</strong> 74</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">184</td>
+<td class="date-time">2032-06-18 12:51:08 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.870724</td>
+<td>6.970195</td>
+<td>14928.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Rocuh To Cf23l</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">185</td>
+<td class="date-time">2032-06-18 12:51:08 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;10&gt; Tf</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">186</td>
+<td class="date-time">2032-06-18 12:51:35 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 290.437286</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">187</td>
+<td class="date-time">2032-06-18 12:51:42 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 287.456512</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">188</td>
+<td class="date-time">2032-06-18 12:52:06 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction initialize hold data</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">189</td>
+<td class="date-time">2032-06-18 12:52:08 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.964645</td>
+<td>6.947914</td>
+<td>12821.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction enter computed hold</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">190</td>
+<td class="date-time">2032-06-18 12:52:10 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">191</td>
+<td class="date-time">2032-06-18 12:52:11 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">192</td>
+<td class="date-time">2032-06-18 12:52:12 PM</td>
+<td>Leg Sequence identifier</td>
+<td>Format str 44</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>50.970341</td>
+<td>6.951441</td>
+<td>12625.000000</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Leg Sequence data:</strong> Sequence: Cf23l To T-P</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">193</td>
+<td class="date-time">2032-06-18 12:52:12 PM</td>
+<td>Pathterm identifier</td>
+<td>Format str 24</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Path term data:</strong> &lt;08&gt; Hm</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">194</td>
+<td class="date-time">2032-06-18 12:52:12 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Speed err at flap1</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">195</td>
+<td class="date-time">2032-06-18 12:52:12 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Enter destination data</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">196</td>
+<td class="date-time">2032-06-18 12:52:13 PM</td>
+<td>S pad message identifier l</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>L message identifier:</strong> Enter destination data</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">197</td>
+<td class="date-time">2032-06-18 12:52:24 PM</td>
+<td>Selection altitude identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selected altitude data:</strong> 7000.000000</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">198</td>
+<td class="date-time">2032-06-18 12:52:32 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 278.720398</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">199</td>
+<td class="date-time">2032-06-18 12:52:48 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 262.722626</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">200</td>
+<td class="date-time">2032-06-18 12:52:54 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 256.791138</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">201</td>
+<td class="date-time">2032-06-18 12:53:00 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 250.906372</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">202</td>
+<td class="date-time">2032-06-18 12:53:05 PM</td>
+<td>Vg altitude tgt identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Vg altitude trg data:</strong> 3000.000000</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">203</td>
+<td class="date-time">2032-06-18 12:53:06 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 245.075134</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">204</td>
+<td class="date-time">2032-06-18 12:53:11 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -933.129211</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">205</td>
+<td class="date-time">2032-06-18 12:53:12 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>51.017662</td>
+<td>7.051617</td>
+<td>11352.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 239.236084</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">206</td>
+<td class="date-time">2032-06-18 12:53:18 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 234.048843</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">207</td>
+<td class="date-time">2032-06-18 12:53:19 PM</td>
+<td>Vnav at mode identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>V navigation status:</strong> V navigation at vss</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">208</td>
+<td class="date-time">2032-06-18 12:53:24 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 229.886734</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">209</td>
+<td class="date-time">2032-06-18 12:53:25 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction delete discon</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">210</td>
+<td class="date-time">2032-06-18 12:53:27 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">211</td>
+<td class="date-time">2032-06-18 12:53:28 PM</td>
+<td>Operator interaction event identifier</td>
+<td>Format operator interaction event</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> Operator interaction insert temporary</li>
+<li><strong>Source fms node:</strong> Captain</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">212</td>
+<td class="date-time">2032-06-18 12:53:32 PM</td>
+<td>Selection speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection speed:</strong> 227.126648</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">213</td>
+<td class="date-time">2032-06-18 12:53:37 PM</td>
+<td>Air brakes identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>Air brakes log:</strong> 75</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">214</td>
+<td class="date-time">2032-06-18 12:53:59 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Invalid</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation primary lost</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">215</td>
+<td class="date-time">2032-06-18 12:54:03 PM</td>
+<td>Master spare identifier</td>
+<td>Format fixed str</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Event identifier:</strong> 68</li>
+<li><strong>FMS node position:</strong> Operational master spare Changed</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">216</td>
+<td class="date-time">2032-06-18 12:54:09 PM</td>
+<td>S pad message identifier r</td>
+<td>Format one unsign 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>R message identifier:</strong> Navigation accur downgrad</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">217</td>
+<td class="date-time">2032-06-18 12:54:37 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>50.922916</td>
+<td>7.057259</td>
+<td>9881.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -1003.313354</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">218</td>
+<td class="date-time">2032-06-18 12:55:42 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>50.853462</td>
+<td>7.000922</td>
+<td>8768.999023</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -987.829041</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">219</td>
+<td class="date-time">2032-06-18 12:55:51 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -983.109253</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">220</td>
+<td class="date-time">2032-06-18 12:56:09 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -991.506042</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">221</td>
+<td class="date-time">2032-06-18 12:56:19 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -996.546814</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">222</td>
+<td class="date-time">2032-06-18 12:56:35 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -1001.080872</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">223</td>
+<td class="date-time">2032-06-18 12:58:06 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>50.975113</td>
+<td>6.955060</td>
+<td>7006.999512</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -26.428518</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">224</td>
+<td class="date-time">2032-06-18 12:58:17 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -16.289230</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">225</td>
+<td class="date-time">2032-06-18 12:58:44 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 1.716918</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">226</td>
+<td class="date-time">2032-06-18 12:59:17 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>50.988552</td>
+<td>7.050880</td>
+<td>7008.999512</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> -23.006844</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">227</td>
+<td class="date-time">2032-06-18 01:00:15 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 26.322182</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">228</td>
+<td class="date-time">2032-06-18 01:00:27 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>50.909904</td>
+<td>7.030749</td>
+<td>6987.999512</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 42.781990</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">229</td>
+<td class="date-time">2032-06-18 01:00:59 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 24.352171</li>
+</ul></div>
+</td>
+</tr>
+<tr>
+<td class="center">230</td>
+<td class="date-time">2032-06-18 01:01:07 PM</td>
+<td>Selection vertical speed identifier</td>
+<td>Format one float 32</td>
+<td>Master</td>
+<td>Spare</td>
+<td>Standby</td>
+<td>Dual</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+<div class="msg"><ul>
+<li><strong>Selection vertical speed:</strong> 29.889486</li>
+</ul></div>
+</td>
+</tr>
+</table>
+</body>
+</html>

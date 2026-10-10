@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><title>Malformed Aircraft Log</title></head>
+<body>
+<!-- Intentionally broken HTML: unclosed tags, missing headers, mixed cell counts -->
+<table id="broken_log">
+  <tr>
+    <th>timestamp</th>
+    <th>system</th>
+    <th>value</th>
+  </tr>
+  <tr>
+    <td>2024-01-15T10:00:00.000</td>
+    <td>ENGINE</td>
+    <td>OK</td>
+    <td>EXTRA_CELL</td><!-- extra cell, no header -->
+  </tr>
+  <tr>
+    <td>2024-01-15T10:00:01.000</td>
+    <td>HYDRAULICS</td>
+    <!-- missing value cell -->
+  </tr>
+  <tr>
+    <td>NOT_A_TIMESTAMP</td>
+    <td>UNKNOWN</td>
+    <td>99</td>
+  </tr>
+  <tr>
+    <td>2024-01-15T10:00:03.000</td>
+    <td>AVIONICS</td>
+    <td>NOMINAL</td>
+  </tr>
+  <!-- Unclosed table tag intentional -->
+</body>
+</html>
