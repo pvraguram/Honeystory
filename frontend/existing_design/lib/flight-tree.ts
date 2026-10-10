@@ -9,6 +9,149 @@
 
 import type { LogEvent, RawDataset, Incident, Claim } from '@/data/schemas'
 
+export type EventSeverity = 'info' | 'notice' | 'warning' | 'critical'
+
+export interface SeverityConfig {
+  key: EventSeverity
+  label: string
+  color: string
+  bgColor: string
+  textColor: string
+  borderColor: string
+  description: string
+}
+
+export const SEVERITY_CONFIG: Record<EventSeverity, SeverityConfig> = {
+  critical: {
+    key: 'critical',
+    label: 'Critical',
+    color: '#ef4444',
+    bgColor: 'bg-red-50',
+    textColor: 'text-red-700',
+    borderColor: 'border-red-200',
+    description: 'Faults, exceptions, disconnects',
+  },
+  warning: {
+    key: 'warning',
+    label: 'Warning',
+    color: '#f59e0b',
+    bgColor: 'bg-amber-50',
+    textColor: 'text-amber-800',
+    borderColor: 'border-amber-200',
+    description: 'Sensor timeouts, retries, degraded states',
+  },
+  notice: {
+    key: 'notice',
+    label: 'Notice',
+    color: '#3b82f6',
+    bgColor: 'bg-blue-50',
+    textColor: 'text-blue-700',
+    borderColor: 'border-blue-200',
+    description: 'Mode changes, expected events',
+  },
+  info: {
+    key: 'info',
+    label: 'Info / Routine',
+    color: '#6b7280',
+    bgColor: 'bg-slate-100',
+    textColor: 'text-slate-700',
+    borderColor: 'border-slate-200',
+    description: 'Periodic state snapshots, normal transitions',
+  },
+}
+
+export function computeEventSeverity(evt: {
+  family?: string
+  category?: string
+  flags?: string[]
+  name?: string
+  fields?: Record<string, any>
+  code?: string
+}): EventSeverity {
+  const flags = (evt.flags || []).map((f) => String(f).toLowerCase())
+  const fam = (evt.family || '').toLowerCase()
+  const cat = (evt.category || '').toLowerCase()
+  const name = (evt.name || '').toLowerCase()
+  const fields = evt.fields || {}
+  const fieldsStr = Object.values(fields).map((v) => String(v).toLowerCase()).join(' ')
+
+  // 1. Critical (#ef4444): faults, exceptions, disconnects
+  if (
+    flags.includes('critical') ||
+    flags.includes('fatal') ||
+    flags.includes('fault') ||
+    fam.includes('fault') ||
+    cat === 'fault' ||
+    name.includes('fault') ||
+    name.includes('failure') ||
+    name.includes('error') ||
+    name.includes('disconnect') ||
+    name.includes('exception') ||
+    name.includes('contention') ||
+    name.includes('abort') ||
+    fieldsStr.includes('failure') ||
+    fieldsStr.includes('disconnect') ||
+    fieldsStr.includes('error')
+  ) {
+    return 'critical'
+  }
+
+  // 2. Warning (#f59e0b): sensor timeouts, retries, degraded states
+  if (
+    flags.includes('warning') ||
+    flags.includes('degraded') ||
+    cat === 'warning' ||
+    name.includes('timeout') ||
+    name.includes('retry') ||
+    name.includes('degraded') ||
+    name.includes('unstable') ||
+    name.includes('congestion') ||
+    name.includes('mismatch') ||
+    name.includes('out of sync') ||
+    fieldsStr.includes('unstable') ||
+    fieldsStr.includes('not ok') ||
+    fieldsStr.includes('timeout') ||
+    fieldsStr.includes('degraded')
+  ) {
+    return 'warning'
+  }
+
+  // 3. Notice (#3b82f6): mode changes, expected events
+  if (
+    cat === 'boot' ||
+    cat === 'mode' ||
+    cat === 'notice' ||
+    flags.includes('notice') ||
+    fam.includes('transition') ||
+    name.includes('mode') ||
+    name.includes('transition') ||
+    name.includes('switch') ||
+    name.includes('interaction') ||
+    name.includes('refresh') ||
+    name.includes('guidance') ||
+    name.includes('synchronized') ||
+    name.includes('handshake') ||
+    fieldsStr.includes('mode') ||
+    fieldsStr.includes('transition')
+  ) {
+    return 'notice'
+  }
+
+  // 4. Info / routine (#6b7280): periodic state snapshots, normal transitions
+  return 'info'
+}
+
+export function computeParseValidity(evt: {
+  parseNotes?: string[]
+  flags?: string[]
+}): boolean {
+  if (evt.parseNotes && evt.parseNotes.length > 0) return false
+  if (evt.flags && evt.flags.some((f) => String(f).toLowerCase().includes('corrupt') || String(f).toLowerCase().includes('parse_error'))) {
+    return false
+  }
+  return true
+}
+
 export interface EventRecordNode {
   id: string
   number: number
@@ -28,6 +171,8 @@ export interface EventRecordNode {
   rawHtml: string
   translation: string | null
   searchTokens: string
+  severity: EventSeverity
+  isParseValid: boolean
   // Teammate's Dedicated Avionics Columns:
   pilotInput: string
   navData: string
@@ -223,6 +368,8 @@ export function buildFlightTree(
       coords: (evt as any).coords || '-',
       machineCode: (evt as any).machineCode || (evt.family === 'Fault' ? `BITE ${evt.code}` : 'Nominal'),
       domain: (evt as any).domain || (evt.family === 'Fault' ? 'SYSTEM_ERROR' : 'TELEMETRY'),
+      severity: computeEventSeverity(evt),
+      isParseValid: computeParseValidity(evt),
       searchTokens: `${idx + 1} ${evt.name} ${evt.code || ''} ${evt.time24} ${nodeDisplayName} ${evt.family} ${(evt as any).pilotInput || ''} ${(evt as any).navData || ''} ${(evt as any).phase || ''} ${(evt as any).coords || ''} ${(evt as any).machineCode || ''} ${raw.translations[evt.id] || ''} ${Object.entries(evt.fields || {}).map(([k, v]) => `${k} ${v}`).join(' ')}`.toLowerCase(),
     }
 

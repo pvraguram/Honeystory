@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export type FlightViewMode = 'node' | 'story' | 'correlation'
+export type FlightViewMode = 'node' | 'story' | 'correlation' | 'visualization'
 
 interface FlightStoreState {
   activeAircraftId: string
@@ -39,6 +39,11 @@ interface FlightStoreState {
   confirmDeleteAircraft: (flightId: string) => void
   toggleAircraftFolder: (id: string) => void
   
+  // Story & 3D Synchronization
+  activeStoryAct: number
+  setActiveStoryAct: (act: number) => void
+  jumpToStoryIn3D: (act: number) => void
+
   // Quick jump from Story citation to specific Event in Node View
   jumpToEventInNodeView: (eventId: string, nodeName?: string, familyKey?: string) => void
 }
@@ -93,6 +98,10 @@ export const useFlightStore = create<FlightStoreState>((set) => ({
         [id]: !s.openAircraftFolders[id],
       },
     })),
+
+  activeStoryAct: 0,
+  setActiveStoryAct: (act) => set({ activeStoryAct: act }),
+  jumpToStoryIn3D: (act) => set({ activeView: 'visualization', activeStoryAct: act }),
 
   jumpToEventInNodeView: (eventId, nodeName, familyKey) =>
     set({

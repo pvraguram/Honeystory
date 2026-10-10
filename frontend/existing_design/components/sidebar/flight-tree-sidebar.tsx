@@ -11,6 +11,7 @@ import {
   HardDriveUpload,
   LayoutGrid,
   MoreVertical,
+  Orbit,
   Plane,
   ScrollText,
   Server,
@@ -88,6 +89,11 @@ export function FlightTreeSidebar({ tree }: FlightTreeSidebarProps) {
       view: 'correlation',
       label: 'Co-relation',
       icon: GitCompare,
+    },
+    {
+      view: 'visualization',
+      label: 'Visualization',
+      icon: Orbit,
     },
   ]
 

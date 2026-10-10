@@ -10,7 +10,7 @@ import {
   Layers,
   X,
 } from 'lucide-react'
-import type { EventRecordNode } from '@/lib/flight-tree'
+import { SEVERITY_CONFIG, type EventRecordNode } from '@/lib/flight-tree'
 
 interface EventInspectorProps {
   event: EventRecordNode | null
@@ -65,7 +65,7 @@ export function EventInspector({ event, onClose }: EventInspectorProps) {
       {/* Inspector Body */}
       <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-5 text-xs">
         {/* Core Metadata Bar */}
-        <div className="grid grid-cols-2 gap-2 rounded border border-slate-200 bg-slate-50/40 p-3 text-xs">
+        <div className="grid grid-cols-2 gap-2.5 rounded border border-slate-200 bg-slate-50/40 p-3 text-xs">
           <div>
             <span className="text-[10px] text-slate-400 uppercase font-bold block">Subsystem Node</span>
             <span className="font-semibold text-slate-800 font-mono">{event.node}</span>
@@ -75,14 +75,36 @@ export function EventInspector({ event, onClose }: EventInspectorProps) {
             <span className="font-semibold text-slate-800 truncate block">{event.family}</span>
           </div>
           <div className="mt-1">
-            <span className="text-[10px] text-slate-400 uppercase font-bold block">Ingestion Status</span>
-            <div className="flex items-center gap-1.5 font-medium text-emerald-700">
-              <span className="size-1.5 rounded-full bg-emerald-500" />
-              <span>Ingested & Valid</span>
-            </div>
+            <span className="text-[10px] text-slate-400 uppercase font-bold block">Flight Severity</span>
+            {(() => {
+              const sev = SEVERITY_CONFIG[event.severity] || SEVERITY_CONFIG.info
+              return (
+                <div className="flex items-center gap-1.5 font-semibold">
+                  <span
+                    className="size-2 rounded-full shrink-0"
+                    style={{ backgroundColor: sev.color }}
+                  />
+                  <span style={{ color: sev.color }}>{sev.label}</span>
+                </div>
+              )
+            })()}
           </div>
           <div className="mt-1">
-            <span className="text-[10px] text-slate-400 uppercase font-bold block">Timestamp</span>
+            <span className="text-[10px] text-slate-400 uppercase font-bold block">Parse Validity</span>
+            {event.isParseValid ? (
+              <div className="flex items-center gap-1.5 font-medium text-emerald-700 font-mono">
+                <span className="size-1.5 rounded-full bg-emerald-500" />
+                <span>Valid (Schema OK)</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1.5 font-medium text-rose-700 font-mono">
+                <span className="size-1.5 rounded-full bg-rose-500" />
+                <span>Invalid (Malformed)</span>
+              </div>
+            )}
+          </div>
+          <div className="col-span-2 pt-1 border-t border-slate-200/60 flex justify-between items-center text-[11px]">
+            <span className="text-[10px] text-slate-400 uppercase font-bold">Timestamp</span>
             <span className="font-mono text-slate-700">{event.timestampNormalized}</span>
           </div>
         </div>

@@ -13,8 +13,10 @@ import {
 import { useFlightStore } from '@/store/flight-store'
 import {
   FAMILIES_CANONICAL,
+  SEVERITY_CONFIG,
   type AircraftTreeNode,
   type EventRecordNode,
+  type EventSeverity,
 } from '@/lib/flight-tree'
 import { EventInspector } from './event-inspector'
 
@@ -75,6 +77,9 @@ export function NodeView({ tree }: NodeViewProps) {
   // Right-hand inspector state
   const [inspectedEvent, setInspectedEvent] = useState<EventRecordNode | null>(null)
 
+  // Severity filter state
+  const [selectedSeverity, setSelectedSeverity] = useState<'all' | EventSeverity>('all')
+
   // Virtualizer parent scroll reference
   const parentRef = useRef<HTMLDivElement>(null)
 
@@ -115,7 +120,7 @@ export function NodeView({ tree }: NodeViewProps) {
     )
   }
 
-  // Gather records according to selected Node & Compact Family Filter
+  // Gather records according to selected Node & Compact Family Filter & Severity
   const filteredRecords = useMemo(() => {
     let list: EventRecordNode[] = []
 
@@ -140,6 +145,10 @@ export function NodeView({ tree }: NodeViewProps) {
       }
     }
 
+    if (selectedSeverity !== 'all') {
+      list = list.filter((r) => r.severity === selectedSeverity)
+    }
+
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim()
       list = list.filter((r) =>
@@ -148,7 +157,7 @@ export function NodeView({ tree }: NodeViewProps) {
     }
 
     return list
-  }, [tree, selectedNode, selectedFamilyKey, searchQuery])
+  }, [tree, selectedNode, selectedFamilyKey, selectedSeverity, searchQuery])
 
   // Virtual scrolling engine: renders only ~25-30 visible rows at any millisecond
   const rowVirtualizer = useVirtualizer({
@@ -256,8 +265,9 @@ export function NodeView({ tree }: NodeViewProps) {
           </div>
         </div>
 
-        {/* 2. Compact Family Selector Bar (Replaced Permanent 256px Column) */}
-        <div className="flex items-center justify-between border-b border-slate-200 px-6 py-2 bg-white text-xs">
+        {/* 2. Compact Family & Severity Selector Bars */}
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-6 py-2 bg-white text-xs">
+          {/* Family Filter Pills */}
           <div className="flex items-center gap-1.5 overflow-x-auto">
             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mr-1.5">
               Family:
@@ -282,8 +292,47 @@ export function NodeView({ tree }: NodeViewProps) {
             })}
           </div>
 
-          <div className="text-[11px] font-mono text-slate-500 shrink-0 ml-4">
-            Showing <span className="font-semibold text-slate-900">{filteredRecords.length.toLocaleString()}</span> rows
+          {/* Severity Filter Pills & Row Count */}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 overflow-x-auto">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mr-1">
+                Severity:
+              </span>
+              {[
+                { key: 'all' as const, label: 'All', dot: undefined },
+                { key: 'critical' as const, label: 'Critical', dot: '#ef4444' },
+                { key: 'warning' as const, label: 'Warning', dot: '#f59e0b' },
+                { key: 'notice' as const, label: 'Notice', dot: '#3b82f6' },
+                { key: 'info' as const, label: 'Info', dot: '#6b7280' },
+              ].map((sev) => {
+                const isActive = selectedSeverity === sev.key
+
+                return (
+                  <button
+                    key={sev.key}
+                    type="button"
+                    onClick={() => setSelectedSeverity(sev.key)}
+                    className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium transition-colors ${
+                      isActive
+                        ? 'bg-slate-900 text-white font-semibold'
+                        : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                    }`}
+                  >
+                    {sev.dot && (
+                      <span
+                        className="size-1.5 rounded-full shrink-0"
+                        style={{ backgroundColor: sev.dot }}
+                      />
+                    )}
+                    <span>{sev.label}</span>
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="text-[11px] font-mono text-slate-500 shrink-0 border-l border-slate-200 pl-3">
+              Showing <span className="font-semibold text-slate-900">{filteredRecords.length.toLocaleString()}</span> rows
+            </div>
           </div>
         </div>
 
@@ -292,7 +341,7 @@ export function NodeView({ tree }: NodeViewProps) {
           {filteredRecords.length === 0 ? (
             <div className="flex h-64 flex-col items-center justify-center text-slate-400">
               <Search className="size-8 stroke-1 text-slate-300" />
-              <p className="mt-2 text-sm font-medium text-slate-600">No events found</p>
+              <p className="mt-2 text-sm font-medium text-slate-600">No events found matching current filters</p>
             </div>
           ) : (
             <table className="w-full text-left border-collapse">
@@ -303,7 +352,7 @@ export function NodeView({ tree }: NodeViewProps) {
                   <th className="py-2.5 px-3 w-24">Node</th>
                   <th className="py-2.5 px-3 w-32">Family</th>
                   <th className="py-2.5 px-4">Event Description</th>
-                  <th className="py-2.5 pr-6 pl-2 w-20 text-right">Status</th>
+                  <th className="py-2.5 pr-6 pl-2 w-24 text-right">Validity</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-xs">
@@ -316,23 +365,34 @@ export function NodeView({ tree }: NodeViewProps) {
                   const r = filteredRecords[virtualRow.index]
                   if (!r) return null
                   const isSelected = inspectedEvent?.id === r.id
-                  const isFault = r.family === 'Fault' || r.flags.length > 0
+                  const sevConfig = SEVERITY_CONFIG[r.severity] || SEVERITY_CONFIG.info
                   const descriptionText = formatEventDescription(r)
+
+                  const hoverBg =
+                    r.severity === 'critical'
+                      ? 'hover:bg-red-50/25'
+                      : r.severity === 'warning'
+                      ? 'hover:bg-amber-50/25'
+                      : r.severity === 'notice'
+                      ? 'hover:bg-blue-50/15'
+                      : 'hover:bg-slate-50/80'
 
                   return (
                     <tr
                       key={r.id}
                       onClick={() => setInspectedEvent(r)}
                       className={`group cursor-pointer transition-colors ${
-                        isSelected
-                          ? 'bg-slate-100/90 font-medium'
-                          : isFault
-                          ? 'bg-red-50/20 hover:bg-slate-50'
-                          : 'hover:bg-slate-50/80'
+                        isSelected ? 'bg-slate-100/90 font-medium' : hoverBg
                       }`}
                     >
-                      {/* Sequence # */}
-                      <td className="py-3.5 pl-6 pr-2 font-mono text-slate-400 text-[11px] text-right">
+                      {/* Sequence # with Left-Edge 4px Severity Bar */}
+                      <td className="relative py-3.5 pl-6 pr-2 font-mono text-slate-400 text-[11px] text-right">
+                        {/* 4px Left-edge color bar: always visible, scannable while scrolling */}
+                        <div
+                          className="absolute left-0 top-0 bottom-0 pointer-events-none"
+                          style={{ width: '4px', backgroundColor: sevConfig.color }}
+                          title={`Severity: ${sevConfig.label} — ${sevConfig.description}`}
+                        />
                         #{r.number}
                       </td>
 
@@ -353,7 +413,7 @@ export function NodeView({ tree }: NodeViewProps) {
                         {r.family}
                       </td>
 
-                      {/* Bold Title & Smaller Description with Breathing Room */}
+                      {/* Bold Title & Smaller Description with Breathing Room & Inline Severity Tag */}
                       <td className="py-3.5 px-4">
                         <div className="flex items-center gap-2">
                           <span className="font-bold text-slate-900 text-xs truncate">
@@ -364,23 +424,42 @@ export function NodeView({ tree }: NodeViewProps) {
                               [{r.eventCode}]
                             </span>
                           )}
+                          <span
+                            className={`inline-flex items-center rounded px-1.5 py-0.2 font-mono text-[9px] font-bold uppercase tracking-wider ${
+                              r.severity === 'critical'
+                                ? 'bg-red-50 text-red-700 border border-red-200/60'
+                                : r.severity === 'warning'
+                                ? 'bg-amber-50 text-amber-800 border border-amber-200/60'
+                                : r.severity === 'notice'
+                                ? 'bg-blue-50 text-blue-700 border border-blue-200/60'
+                                : 'bg-slate-100 text-slate-600'
+                            }`}
+                          >
+                            {r.severity}
+                          </span>
                         </div>
                         <p className="mt-0.5 text-slate-500 text-[11px] leading-relaxed line-clamp-1">
                           {descriptionText}
                         </p>
                       </td>
 
-                      {/* Status Dot / Indicator */}
+                      {/* Parse Validity Status Badge (Repurposed Strictly for Schema Integrity) */}
                       <td className="py-3.5 pr-6 pl-2 text-right">
-                        {isFault ? (
-                          <span className="inline-flex items-center gap-1 rounded bg-red-100/80 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-red-700">
-                            <span className="size-1.5 rounded-full bg-red-600" />
-                            Fault
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] font-medium text-slate-600">
+                        {r.isParseValid ? (
+                          <span
+                            className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-0.5 font-mono text-[10px] font-medium text-slate-600"
+                            title="Parse Validity: Well-formed record adhering to schema"
+                          >
                             <span className="size-1.5 rounded-full bg-emerald-500" />
                             Valid
+                          </span>
+                        ) : (
+                          <span
+                            className="inline-flex items-center gap-1 rounded bg-rose-50 px-2 py-0.5 font-mono text-[10px] font-semibold text-rose-700 border border-rose-200"
+                            title="Parse Validity: Malformed or corrupted record"
+                          >
+                            <span className="size-1.5 rounded-full bg-rose-500" />
+                            Invalid
                           </span>
                         )}
                       </td>

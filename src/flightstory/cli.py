@@ -346,10 +346,12 @@ def cmd_pipeline(args: argparse.Namespace) -> int:
     print("==================================================")
     orch = IngestionOrchestrator(
         input_dir=INPUT_HTML_DIR,
-        node_mapping_config=DEFAULT_NODE_MAPPING_PATH,
+        mapping_config=DEFAULT_NODE_MAPPING_PATH,
+        force_reprocess=True,
+        archive_inputs=True,
     )
-    manifest = orch.run(force=True, copy_to_archive=True)
-    _print_ingest_summary(manifest)
+    manifest = orch.run()
+    _print_manifest_report(manifest)
 
     print("\n==================================================")
     print("STEP 3: Domain Translation & UI Export")
@@ -357,6 +359,26 @@ def cmd_pipeline(args: argparse.Namespace) -> int:
     export_ui_dataset()
     print("\n[SUCCESS] End-to-end ingestion & UI export completed!")
     print(f"Total stored records: {manifest.total_records_stored}")
+
+    print("\n==================================================")
+    print("STEP 4: Teammate Lightning Normalization")
+    print("==================================================")
+    try:
+        from .normalizer import run_lightning_pipeline
+        run_lightning_pipeline()
+    except Exception as e:
+        print(f"Warning: normalizer failed: {e}")
+
+    print("\n==================================================")
+    print("STEP 5: Cross-Node Correlation Engine")
+    print("==================================================")
+    try:
+        from .correlator import FDMCrossNodeCorrelationEngine
+        engine = FDMCrossNodeCorrelationEngine()
+        engine.export_json()
+    except Exception as e:
+        print(f"Warning: correlator failed: {e}")
+
     return 0
 
 

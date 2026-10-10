@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlightStory — System Implementation Architecture</title>
+<style>
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-alt: #f1f5f9;
+  --border: #e2e8f0;
+  --border-dark: #cbd5e1;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-light: #64748b;
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --tag-bg: #e0f2fe;
+  --tag-text: #0369a1;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 32px;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+p.subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+nav.subnav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 0 32px;
+}
+
+.nav-links {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 0;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+main {
+  max-width: 1100px;
+  margin: 28px auto;
+  padding: 0 32px;
+}
+
+.implementation-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.impl-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 22px;
+}
+
+.impl-number {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.impl-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 3px;
+}
+
+.impl-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.section-part {
+  margin-bottom: 26px;
+}
+
+.part-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.part-label span.num {
+  background: var(--surface-alt);
+  border: 1px solid var(--border-dark);
+  color: var(--text-main);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+/* Workflow Flowchart */
+.workflow-chain {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wf-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 16px;
+}
+
+.wf-step-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--primary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  min-width: 58px;
+  text-align: center;
+}
+
+.wf-step-content {
+  flex: 1;
+}
+
+.wf-step-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.wf-step-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.wf-arrow {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1;
+  margin: -4px 0 -4px 44px;
+}
+
+/* Techstack Tags */
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.tech-name {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.tech-role {
+  font-size: 12px;
+  color: var(--text-light);
+  border-left: 1px solid var(--border-dark);
+  padding-left: 8px;
+}
+
+/* Methodology text */
+.methodology-box {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 6px;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.methodology-box p {
+  margin-bottom: 10px;
+}
+
+.methodology-box p:last-child {
+  margin-bottom: 0;
+}
+
+.methodology-box strong {
+  color: var(--text-main);
+}
+
+footer {
+  text-align: center;
+  padding: 28px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-light);
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>FlightStory Implementation Architecture</h1>
+    <p class="subtitle">Accurate breakdown of the 3 core items for every implementation: The Actual Workflow, Tech Stack, and Plain English Methodology.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="nav-links">
+    <a href="#impl-1">1. Live Web Upload &amp; Ingestion</a>
+    <a href="#impl-2">2. Domain Translator</a>
+    <a href="#impl-3">3. Causal DAG Correlation</a>
+    <a href="#impl-4">4. Flight Story Reconstruction</a>
+    <a href="#impl-5">5. Web Visualizer Dashboard</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ======================================================= -->
+  <!-- IMPLEMENTATION 1: WEB UPLOAD & INGESTION -->
+  <!-- ======================================================= -->
+  <section id="impl-1" class="implementation-block">
+    <div class="impl-header">
+      <div class="impl-number">Implementation 01</div>
+      <div class="impl-title">Live Web Upload &amp; Multi-Subsystem Ingestion Pipeline</div>
+      <div class="impl-desc">How log files are uploaded dynamically by the user through the web interface, validated, mapped to aircraft racks, and ingested into analytical storage on the fly.</div>
+    </div>
+
+    <!-- 1. The Actual Workflow -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">1</span> The Actual Workflow When Working</div>
+      <div class="workflow-chain">
+        <div class="wf-step">
+          <div class="wf-step-num">Step 1</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">User Upload via Web UI (ingest-modal.tsx)</div>
+            <div class="wf-step-desc">The data logs are not pre-stored on the machine. The user opens the web application, clicks "Ingest Aircraft Logs", and drags &amp; drops one or more HTML log files (.html / .htm). The UI automatically previews the detected computer channel (Node A, Node B, Node C) and log family (State, Fault, CI_BPQ, LBPQ, Transition) before submission.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 2</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">FastAPI Multipart Ingestion Endpoint (server.py)</div>
+            <div class="wf-step-desc">The web browser sends a POST request with the files to http://localhost:8000/api/upload-and-ingest?flight_id=AA100. FastAPI streams and writes the uploaded files into the active processing directory for that flight.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 3</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Pre-Database Structural Reconnaissance (recon.py)</div>
+            <div class="wf-step-desc">Before touching the database, an inspection pass analyzes table structures. It samples 50 cell values per column and tests regex patterns. If real timestamps are confirmed with at least 50% confidence, the table is approved. Tables without timestamps are recorded in an audit manifest so nothing is silently lost.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 4</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Explicit Subsystem Hardware Mapping (node_mapping.py)</div>
+            <div class="wf-step-desc">Resolves each file against node_mapping.json to decouple physical filenames from aircraft hardware racks: NODE_A maps to Left Rack (Master Channel), NODE_B maps to Right Rack (Standby Channel), and NODE_C maps to Auxiliary Rack (Spare).</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 5</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Schema-Agnostic EAV Extraction (extractor.py)</div>
+            <div class="wf-step-desc">Extracts rows into an IngestionRecord model. Rather than enforcing a fixed column schema that crashes when firmware formats change, it stores universal coordinates (node_id, table_id, row number, timestamp) plus a dynamic payload dictionary (fields: dict[str, Any]) holding whatever key-value attributes are present.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 6</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Clock Normalization &amp; Analytical Storage (timestamps.py &amp; storage.py)</div>
+            <div class="wf-step-desc">Standardizes multi-format timestamps into continuous floating-point seconds from midnight (&tau;), checks for midnight rollover and asynchronous clock jitter, and writes the batch into DuckDB and partitioned Parquet files.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Tech Stack -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">2</span> The Tech Stack Used</div>
+      <div class="tech-grid">
+        <div class="tech-tag"><span class="tech-name">Next.js / React</span><span class="tech-role">Drag-and-Drop Web Upload UI</span></div>
+        <div class="tech-tag"><span class="tech-name">FastAPI &amp; Uvicorn</span><span class="tech-role">Asynchronous Python Ingestion API</span></div>
+        <div class="tech-tag"><span class="tech-name">BeautifulSoup4 &amp; lxml</span><span class="tech-role">High-Speed HTML Table &amp; List Extraction</span></div>
+        <div class="tech-tag"><span class="tech-name">DuckDB</span><span class="tech-role">Embedded Columnar Analytical Database</span></div>
+        <div class="tech-tag"><span class="tech-name">PyArrow &amp; Parquet</span><span class="tech-role">Partitioned Zero-Loss Disk Storage</span></div>
+        <div class="tech-tag"><span class="tech-name">Regex &amp; Dataclasses</span><span class="tech-role">Timestamp Verification &amp; Ingestion Record Models</span></div>
+      </div>
+    </div>
+
+    <!-- 3. Methodology -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">3</span> The Actual Methodology in Plain English</div>
+      <div class="methodology-box">
+        <p><strong>The Problem:</strong> In real flight testing, log files do not sit pre-loaded on the server. Different engineers upload logs through a web browser whenever an aircraft lands. Furthermore, the logs from the 3 flight computers (Node A, Node B, Node C) are completely inconsistent: some are wide tables, some are bullet lists, and some are raw key-value dumps. Hardcoding column names caused previous systems to crash on upload.</p>
+        <p><strong>How we solved it:</strong> The user simply drops the files into the web browser modal. The browser uploads them to a Python FastAPI backend. The backend inspects the files before touching the database: it tests 50 actual cell values with regex formulas to confirm whether real timestamps exist, strictly maps each file to its physical aircraft computer rack via a configuration file, and stores each row as universal coordinates plus a dynamic dictionary. This ensures that no matter what columns or formats are in the uploaded files, the ingestion never crashes and zero rows are lost.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- IMPLEMENTATION 2: TRANSLATOR -->
+  <!-- ======================================================= -->
+  <section id="impl-2" class="implementation-block">
+    <div class="impl-header">
+      <div class="impl-number">Implementation 02</div>
+      <div class="impl-title">Domain Translator &amp; Context Synthesis Engine (translator.py)</div>
+      <div class="impl-desc">Transforms cryptic binary registers, BITE codes, memory addresses, and pilot keypad indices into human-readable flight deck actions and safety advisories.</div>
+    </div>
+
+    <!-- 1. The Actual Workflow -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">1</span> The Actual Workflow When Working</div>
+      <div class="workflow-chain">
+        <div class="wf-step">
+          <div class="wf-step-num">Step 1</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Ingest Machine Data Fields</div>
+            <div class="wf-step-desc">Receives raw extracted log rows containing cryptic hardware parameters: BITE 6025, Memory 402656480, Button 4869, ARINC Command 4294967172, Dual Mode 1, Opposite OK 0.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 2</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Layer 1: Domain Mapping Dictionaries (translate_field)</div>
+            <div class="wf-step-desc">Decodes raw numbers against aerospace specifications: button 4869 translates to "INIT (Initialization) Key", memory 402656480 converts to Hex 0x18000CE0 (CPU Instruction Trap / Stack Boundary Violation), and command 4294967172 decodes to ARINC-429 standby channel invalidation.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 3</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Layer 2: Contextual Subsystem Synthesis (synthesize_event_headline)</div>
+            <div class="wf-step-desc">Inspects the event family. For faults, it identifies the failure mechanism, the Deos RTOS daemon PID, and the recovery action. For state changes, it checks cross-talk status. For pilot inputs, it determines who acted (Captain vs First Officer) and their navigation goal.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 4</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Domain Classification &amp; UI Export (classify_event)</div>
+            <div class="wf-step-desc">Classifies each translated record into one of 4 clean domains: SYSTEM_ERROR (critical alerts), PILOT_INPUT (cockpit MCDU actions), NAVIGATION (flight guidance), or TELEMETRY (routine heartbeat).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Tech Stack -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">2</span> The Tech Stack Used</div>
+      <div class="tech-grid">
+        <div class="tech-tag"><span class="tech-name">Python 3.11</span><span class="tech-role">String &amp; Hex Processing Engine</span></div>
+        <div class="tech-tag"><span class="tech-name">ARINC-429 Spec</span><span class="tech-role">Digital Bus Word Definitions</span></div>
+        <div class="tech-tag"><span class="tech-name">RTCA DO-178C</span><span class="tech-role">Avionics Fault &amp; BITE Specifications</span></div>
+        <div class="tech-tag"><span class="tech-name">Deos RTOS Maps</span><span class="tech-role">Kernel Daemon &amp; Task ID Lookups</span></div>
+        <div class="tech-tag"><span class="tech-name">Regular Expressions</span><span class="tech-role">Pattern Extraction &amp; Sanitization</span></div>
+      </div>
+    </div>
+
+    <!-- 3. Methodology -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">3</span> The Actual Methodology in Plain English</div>
+      <div class="methodology-box">
+        <p><strong>The Problem:</strong> When an aircraft experiences a glitch, the raw logs output numbers like "BITE 6025" or memory addresses like "402656480". To human evaluators, pilots, or airline safety inspectors, these numbers mean nothing and give no explanation for why redundancy was lost.</p>
+        <p><strong>How we solved it:</strong> We built a domain translator with two layers. The first layer converts numbers into aerospace terms (such as turning 402656480 into hex 0x18000CE0 to identify a CPU instruction stack trap). The second layer looks at the context of the whole event: it identifies who did the action (Captain or First Officer), what RTOS daemon failed (PID 653), and what safety recovery occurred (automatic FMS service restart). This turns cryptic dumps into clear sentences like: <em>"BITE Fault 6025: Process Identity Lookup Failure (PID 653) — Automatic Recovery: FMS Service Restart."</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- IMPLEMENTATION 3: CAUSAL DAG -->
+  <!-- ======================================================= -->
+  <section id="impl-3" class="implementation-block">
+    <div class="impl-header">
+      <div class="impl-number">Implementation 03</div>
+      <div class="impl-title">Log Correlation &amp; Root Cause Causal Graph (LogCorrelationLayer)</div>
+      <div class="impl-desc">Clusters event floods within a 15-second sliding window, builds a Directed Acyclic Graph (DAG), and calculates the downstream blast radius of faults.</div>
+    </div>
+
+    <!-- 1. The Actual Workflow -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">1</span> The Actual Workflow When Working</div>
+      <div class="workflow-chain">
+        <div class="wf-step">
+          <div class="wf-step-num">Step 1</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Event Normalization &amp; PID Parsing</div>
+            <div class="wf-step-desc">Normalizes incoming diagnostic lines and extracts Deos process identifiers (such as PID 653) from raw fault descriptions.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 2</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Sliding Window Clustering &amp; Flood Debouncing</div>
+            <div class="wf-step-desc">Clusters events that occur within 15 seconds of each other. Debounces duplicate error floods by counting occurrences and saving source log line IDs as evidence.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 3</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Causal DAG Construction (NetworkX DiGraph)</div>
+            <div class="wf-step-desc">Applies known causal propagation rules to connect nodes: BITE 6074 (file EOF) &rarr; BITE 6025 (PID fail) / 6035 (bind fail) &rarr; BITE 6029 (mutex timeout) &rarr; BITE 6000 (deadline missed) &rarr; 11631-11633 (receiver timeouts).</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 4</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Root Cause Scoring &amp; Blast Radius Calculation</div>
+            <div class="wf-step-desc">Identifies all nodes with zero incoming edges (true root causes) and calculates their downstream blast radius (the total number of impacted subsystems).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Tech Stack -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">2</span> The Tech Stack Used</div>
+      <div class="tech-grid">
+        <div class="tech-tag"><span class="tech-name">NetworkX</span><span class="tech-role">Directed Acyclic Graph (DiGraph) Algorithms</span></div>
+        <div class="tech-tag"><span class="tech-name">Pandas</span><span class="tech-role">Time-Series Windowing &amp; GroupBy Aggregation</span></div>
+        <div class="tech-tag"><span class="tech-name">Python timedelta</span><span class="tech-role">15-Second Sliding Window Intervals</span></div>
+        <div class="tech-tag"><span class="tech-name">Graph Descendants</span><span class="tech-role">Subsystem Blast Radius Calculation</span></div>
+      </div>
+    </div>
+
+    <!-- 3. Methodology -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">3</span> The Actual Methodology in Plain English</div>
+      <div class="methodology-box">
+        <p><strong>The Problem:</strong> When a software component fails in an avionics computer, it triggers dozens of secondary alarms all at once. An evaluator sees 50 errors pop up at the same timestamp and cannot tell which single failure started the chain reaction.</p>
+        <p><strong>How we solved it:</strong> We group errors that happen within 15 seconds into a single cluster. Then, using a cause-and-effect graph (DAG), we link each failure to what it caused: for example, a file read error (Fault 6074) caused a process ID lookup to fail (Fault 6025), which locked an OS mutex (Fault 6029), which caused a background task to miss its scheduling deadline (Fault 6000). The algorithm scores each root cause by counting how many downstream systems it broke (its blast radius), identifying the real origin of the problem immediately.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- IMPLEMENTATION 4: FLIGHT STORY -->
+  <!-- ======================================================= -->
+  <section id="impl-4" class="implementation-block">
+    <div class="impl-header">
+      <div class="impl-number">Implementation 04</div>
+      <div class="impl-title">Flight Story &amp; Mission Trajectory Reconstruction (dataset_builder.py, timestamps.py)</div>
+      <div class="impl-desc">Synthesizes thousands of uploaded log entries into a continuous chronological flight story with automatic flight phase tracking and incident timeline markers.</div>
+    </div>
+
+    <!-- 1. The Actual Workflow -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">1</span> The Actual Workflow When Working</div>
+      <div class="workflow-chain">
+        <div class="wf-step">
+          <div class="wf-step-num">Step 1</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Master Timeline Merging</div>
+            <div class="wf-step-desc">Consolidates extracted rows from the uploaded Node A, Node B, and Node C files into a unified master array and sorts them strictly by normalized epoch seconds.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 2</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Delta Time (&Delta;t) Relative Offsets</div>
+            <div class="wf-step-desc">Calculates the relative time difference (&Delta;t) between consecutive packets to provide human-readable relative time markers (+0.25s, +2m 14s) from mission start (T0).</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 3</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Dynamic Flight Phase State Machine</div>
+            <div class="wf-step-desc">Tracks altitude transitions and climb flags to dynamically determine current flight phase: Pre-Flight Gate Setup &rarr; Climb Ascent &rarr; En-Route Cruise &rarr; Step-Down Descent &rarr; ILS Approach &amp; Landing.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 4</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Incident Milestone Tagging</div>
+            <div class="wf-step-desc">Pins significant events (faults, crew inputs, and redundancy drops) directly to their corresponding altitude and phase coordinates along the flight trajectory.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Tech Stack -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">2</span> The Tech Stack Used</div>
+      <div class="tech-grid">
+        <div class="tech-tag"><span class="tech-name">Python 3.11</span><span class="tech-role">Event Pipeline &amp; Chronological Sorting</span></div>
+        <div class="tech-tag"><span class="tech-name">JSON Serialization</span><span class="tech-role">Curated Timeline Data Store</span></div>
+        <div class="tech-tag"><span class="tech-name">State Machine Logic</span><span class="tech-role">Altitude &amp; Flight Phase Classifier</span></div>
+        <div class="tech-tag"><span class="tech-name">HTML5 / SVG</span><span class="tech-role">2D Mission Trajectory Visualization</span></div>
+      </div>
+    </div>
+
+    <!-- 3. Methodology -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">3</span> The Actual Methodology in Plain English</div>
+      <div class="methodology-box">
+        <p><strong>The Problem:</strong> When log files are uploaded, they contain thousands of separate events recorded at different rates by different computers. Without stitching them together, you have a pile of disconnected rows rather than a clear story of what happened during the flight.</p>
+        <p><strong>How we solved it:</strong> We merge all events into one single timeline ordered by time. We track the airplane's altitude from ground level at the gate, climbing to 18,000 feet, and descending back for landing. By tying each diagnostic event to the airplane's flight phase and altitude, evaluators can clearly see: <em>what happened at the gate (initialization fault), what happened during climb (pilot entered cruise flight level), and what happened at cruise altitude (partner FMS lost heartbeat and switched to single mode).</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- IMPLEMENTATION 5: WEB VISUALIZER -->
+  <!-- ======================================================= -->
+  <section id="impl-5" class="implementation-block">
+    <div class="impl-header">
+      <div class="impl-number">Implementation 05</div>
+      <div class="impl-title">Live Web Visualizer &amp; Avionics Redundancy Dashboard</div>
+      <div class="impl-desc">The interactive web platform where users upload logs, filter events by computer channel or severity, and inspect live cockpit telemetry and redundancy status.</div>
+    </div>
+
+    <!-- 1. The Actual Workflow -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">1</span> The Actual Workflow When Working</div>
+      <div class="workflow-chain">
+        <div class="wf-step">
+          <div class="wf-step-num">Step 1</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Initial Load (No Pre-Loaded Logs)</div>
+            <div class="wf-step-desc">The user opens the web application (Next.js on port 3000 or the standalone HTML dashboard). The interface initializes with an empty state or status overview, ready to receive aircraft logs.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 2</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Interactive Log Upload &amp; Live Status Query</div>
+            <div class="wf-step-desc">The user opens the Ingestion Modal, selects their aircraft files, and uploads them to the FastAPI backend. Upon completion, the UI queries GET /api/status to update total records and node counts.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 3</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Dynamic Filtering &amp; Flight Scrubbing</div>
+            <div class="wf-step-desc">Users can filter the timeline by Node (Node A, Node B, Node C), Domain (System Errors, Pilot Inputs, Navigation, Telemetry), or search keywords. Evaluators can scrub through the flight trajectory slider to observe altitude and incident changes.</div>
+          </div>
+        </div>
+        <div class="wf-arrow">&darr;</div>
+        <div class="wf-step">
+          <div class="wf-step-num">Step 4</div>
+          <div class="wf-step-content">
+            <div class="wf-step-title">Flight Data Reset / Deletion (delete-aircraft-modal.tsx)</div>
+            <div class="wf-step-desc">Users can click "Delete Aircraft Logs" to call POST /api/delete-flight?flight_id=AA100, which purges the DuckDB database, clears Parquet files, and resets the interface back to zero records.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Tech Stack -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">2</span> The Tech Stack Used</div>
+      <div class="tech-grid">
+        <div class="tech-tag"><span class="tech-name">Next.js 14 / React 18</span><span class="tech-role">Interactive Frontend Application</span></div>
+        <div class="tech-tag"><span class="tech-name">TailwindCSS</span><span class="tech-role">Clean, Responsive UI Styling</span></div>
+        <div class="tech-tag"><span class="tech-name">Zustand</span><span class="tech-role">Fast Client-Side State Management</span></div>
+        <div class="tech-tag"><span class="tech-name">Lucide Icons</span><span class="tech-role">Clean UI Vector Icons</span></div>
+        <div class="tech-tag"><span class="tech-name">HTML5 / Vanilla JS</span><span class="tech-role">Zero-Dependency Standalone Offline Dashboard</span></div>
+      </div>
+    </div>
+
+    <!-- 3. Methodology -->
+    <div class="section-part">
+      <div class="part-label"><span class="num">3</span> The Actual Methodology in Plain English</div>
+      <div class="methodology-box">
+        <p><strong>The Problem:</strong> Aviation evaluators need a fast, responsive interface where they can upload new flight logs, immediately review decoded events, filter by channel, and cleanly delete data when testing a new flight scenario.</p>
+        <p><strong>How we solved it:</strong> We built a clean web visualizer. It starts empty or queries the backend for the current status. The user uploads logs directly through the web modal, the system ingests and translates them on the fly, and the dashboard immediately updates with live record counts, filtered views, and cockpit gauges. When finished, the user can reset the system with a single click, completely deleting the flight's records from disk and database so the system is ready for the next test run.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  FlightStory &bull; Avionics Ingestion, Translation, Correlation &amp; Visualization Platform &bull; Clean Architecture Overview
+</footer>
+
+</body>
+</html>

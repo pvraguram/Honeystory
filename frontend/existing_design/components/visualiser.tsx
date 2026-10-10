@@ -8,6 +8,7 @@ import { FlightTreeSidebar } from './sidebar/flight-tree-sidebar'
 import { NodeView } from './views/node-view'
 import { StoryView } from './views/story-view'
 import { CorrelationView } from './views/correlation-view'
+import { Flight3DVisualization } from './views/flight-3d-visualization'
 import { IngestModal } from './modals/ingest-modal'
 import { AddNodeModal } from './modals/add-node-modal'
 import { DeleteAircraftModal } from './modals/delete-aircraft-modal'
@@ -90,7 +91,13 @@ export function Visualiser({ raw }: { raw: RawDataset }) {
 
             {/* Active View Badge */}
             <span className="rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold text-white capitalize shadow-2xs">
-              {activeView === 'node' ? 'Node View' : activeView === 'story' ? 'Story View' : 'Co-relation'}
+              {activeView === 'node'
+                ? 'Node View'
+                : activeView === 'story'
+                ? 'Story View'
+                : activeView === 'correlation'
+                ? 'Co-relation'
+                : '3D Visualization'}
             </span>
           </div>
         </header>
@@ -100,6 +107,7 @@ export function Visualiser({ raw }: { raw: RawDataset }) {
           {activeView === 'node' && <NodeView tree={activeTree} />}
           {activeView === 'story' && <StoryView tree={activeTree} />}
           {activeView === 'correlation' && <CorrelationView tree={activeTree} />}
+          {activeView === 'visualization' && <Flight3DVisualization tree={activeTree} />}
         </main>
       </div>
 
